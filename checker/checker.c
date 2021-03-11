@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/11 20:18:46 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/11 20:27:51 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void    check_sol()
 void    read_inst()
 {
     char    *line;
-    t_list *instr;
+    t_list  *instr;
 
     line = 0;
     while (get_next_line(0, &line))
     {
-        ft_ls
+        
     }
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cromalde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:28:13 by cromalde          #+#    #+#             */
-/*   Updated: 2021/01/26 15:00:01 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/11 20:03:10 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
 # include "get_next_line.h"
 
 # define BASE_10	"0123456789"

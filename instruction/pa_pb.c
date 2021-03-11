@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 18:36:16 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/11 20:17:38 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/11 19:25:21 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/11 19:42:33 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "../includes/instruction.h"
 
-# include "../libft/libft.h"
-# include "instruction.h"
-# include <unistd.h>
-# include <stdlib.h>
+void    pa(t_stack **a, t_stack **b)
+{
+	t_stack *tmp;
 
-#endif
+	if (!*b)
+		return ;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = *a;
+	*a = tmp;
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	t_stack *tmp;
+
+	if (!*a)
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+	*b = tmp;
+}

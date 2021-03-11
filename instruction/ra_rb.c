@@ -1,21 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ra_rb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 18:36:16 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/11 20:17:38 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/11 19:31:37 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/11 19:41:52 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "../includes/instruction.h"
 
-# include "../libft/libft.h"
-# include "instruction.h"
-# include <unistd.h>
-# include <stdlib.h>
+void	ra(t_stack **a)
+{
+	t_stack *tmp;
 
-#endif
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = *a;
+	*a = (*a)->next;
+	tmp->next->next = 0;
+}
+
+void	rb(t_stack **b)
+{
+	t_stack *tmp;
+
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = *b;
+	*b = (*b)->next;
+	tmp->next->next = 0;
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	ra(a);
+	rb(b);
+}

@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/11 18:29:17 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 11:13:26 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,39 @@
 
 CKNAME	=	checker
 PSNAME	=	push_swap
-CKR		=	./checker/$(wildcard *.c)
-PSS		=	./push_swap/$(wildcard *.c)
-INCCK	=	./includes/checker.h
-INCPS	=	./includes/push_swap.h
+CKR		=	chsrcs/checker.c
+
+PSS		=	push_swap/$(wildcard *.c)
+OBPSS	=	$(addprefix $(OPS_DIR)/, $(PSS:%.c=%.o))
+
+INSTR	=	instruction/pa_pb.c \
+			instruction/ra_rb.c \
+			instruction/rra_rrb.c \
+			instruction/sa_sb.c
+
+INCCK	=	includes/checker.h \
+			includes/instruction.h
+
+INCPS	=	includes/push_swap.h \
+			includes/instruction.h
+			
+OBCKR	=	$(CKR:.c=.o)\
+			$(INSTR:.c=.o)
+
 CC		=	gcc
 CFLAG	=	-Wall -Wextra -Werror -g
 MKDIR	=	mkdir -p
 RM		=	rm -rf
-OCK_DIR	=	ocks
-OPS_DIR	=	opss
-OBCKR	=	$(addprefix $(OCK_DIR)/, $(CKR: .c=.o)
-OBPSS	=	$(addprefix $(OPS_DIR)/, $(PSS: .c=.o)
 
 .PHONY:	all clean fclean re
 
 all: $(CKNAME) #$(PSNAME)
 
-$(OCK_DIR)/%.o : %.c
-	@$(MKDIR) $(OCK_DIR)
-	@$(CC) $(CFLAG) -c $(CKR) -o $(CKNAME)
-	@printf "Compiling... %-33.33s\r" $(CKNAME)
+%.o: %.c
+	@$(CC) $(CFLAG) -c $(CKR) -o $@
+	@$(CC) $(CFLAG) -c $(INSTR)
+	@mv *.o instruction/
+	@printf "Compiling... %-33.33s\r" $@
 
 $(OPS_DIR)/%.o : %.c
 	@$(MKDIR) $(OPS_DIR)
@@ -55,7 +67,7 @@ $(PSNAME):	$(OBPSS)
 
 clean:
 	@make clean -C ./libft
-	@$(RM) $(OCK_DIR) $(OPS_DIR)
+	@$(RM) $(OBCKR)
 	@echo "\033[0;31mCleaning	folders\033[0;0m"
 
 fclean:	clean

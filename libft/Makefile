@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cromalde <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/11 13:46:40 by cromalde          #+#    #+#              #
-#    Updated: 2021/01/11 13:47:17 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 11:09:45 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME		=	libft.a
 INC			=	libft.h
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 AR			=	ar rc
 RM			=	rm -f
 
@@ -32,15 +32,15 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 bonus:	$(BONOBJS) $(OBJS)
-	$(AR) $(NAME) $(BONOBJS) $(OBJS)
+	@$(AR) $(NAME) $(BONOBJS) $(OBJS)
 
 %.o: %.c $(INC)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:	
-	$(RM) $(OBJS) $(BONOBJS)
+	@$(RM) $(OBJS) $(BONOBJS)
 
 fclean:	clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re:	fclean all

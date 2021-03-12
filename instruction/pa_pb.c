@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:25:21 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 10:51:52 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:04:57 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/instruction.h"
 
-void    pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
 	t_stack *tmp;
 

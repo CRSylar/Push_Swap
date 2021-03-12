@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 16:22:19 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:29:01 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,19 @@ int		stack_ordered(t_stack **a)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+void	print_stack(t_stack *a, int stack)
+{
+	t_stack *tmp;
+
+	tmp = a;
+	while (tmp)
+	{
+		if (stack == 1)
+			printf("A ->[%d]\n", tmp->data);
+		else
+			printf("B ->[%d]\n", tmp->data);
+		tmp = tmp->next;
+	}
 }

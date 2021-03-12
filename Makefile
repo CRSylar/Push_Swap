@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 16:41:46 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 19:18:27 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 
 CKNAME	=	checker
 PSNAME	=	push_swap
+LIB		=	libft/libft.a
 CKR		=	chsrcs/checker.c \
 			chsrcs/chck_utils.c
 
@@ -26,58 +27,52 @@ INSTR	=	instruction/pa_pb.c \
 			instruction/rra_rrb.c \
 			instruction/sa_sb.c
 
-INCCK	=	includes/checker.h \
-			includes/instruction.h
+O_IN	=	$(INSTR:.c=.o)
+O_CK	=	$(CKR:.c=.o)
+O_PS	=	$(PSS:.c=.o)
 
-INCPS	=	includes/push_swap.h \
-			includes/instruction.h
-			
-OBCKR	=	$(CKR:.c=.o)
+H_INS	=	-I includes/instruction.h
 
-OBPSS	=	$(PSS:.c=.o)
+INCCK	=	-I includes/checker.h
 
-OBIST	=	$(INSTR:.c=.o)
+INCPS	=	-I includes/push_swap.h
 
 CC		=	gcc
 CFLAG	=	-Wall -Wextra -Werror -g
-MKDIR	=	mkdir -p
 RM		=	rm -rf
 
-.PHONY:	all clean fclean re
+.PHONY:		all clean fclean re bonus common
 
-all: $(CKNAME) $(PSNAME)
+all:	$(LIB) common $(CKNAME) $(PSNAME)
 
-$(OBIST):
-	@$(CC) $(CFLAG) -c $(INSTR)
+$(LIB):
+	@make bonus -C ./libft
+
+common:
+	@$(CC) $(CFLAG) -c $(H_INS) $(INSTR)
 	@mv *.o instruction/
 
-$(OBCKR): $(OBIST)
-	@$(CC) $(CFLAG) -c $(CKR)
-	mv *.o chsrcs/
+$(CKNAME):
+	@$(CC) -c $(CFLAG) $(INCCK) $(CKR)
+	@mv *.o chsrcs/
+	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCCK) $(O_IN) $(O_CK) $(LIB)
+	@echo "\033[0;32mCreating        $(CKNAME)\033[0;0m"
 
-$(OBPSS): $(OBIST)
-	@$(CC) $(CFLAG) -c $(PSS)
+$(PSNAME):
+	@$(CC) -c $(CFLAG) $(INCPS) $(PSS)
 	@mv *.o ps_sw_srcs/
-
-$(CKNAME):	$(OBCKR)
-	@make bonus -C ./libft
-	@echo "\033[0;32mCreating        libft.a   \033[0;0m"
-	@$(CC) $(CFLAGS) $(OBCKR) $(OBIST) ./libft/libft.a -o $(CKNAME)
-	@echo "\033[0;32mCreating        CHECKER\033[0;0m"
-
-$(PSNAME):	$(OBPSS)
-	@make bonus -C ./libft
-	@$(CC) $(CFLAGS) $(OBPSS) $(OBIST) ./libft/libft.a -o $(PSNAME)
-	@echo "\033[0;32mCreating        PUSH_SWAP\033[0;0m"
+	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCPS) $(O_IN) $(O_PS) $(LIB)
+	@echo "\033[0;32mCreating        $(PSNAME)\033[0;0m"
 
 clean:
 	@make clean -C ./libft
-	@$(RM) $(OBCKR) $(OBPSS) $(OBIST)
-	@echo "\033[0;31mCleaning	Objects\033[0;0m"
+	@$(RM) $(O_CK) $(O_IN) $(O_PS)
+	@echo "\033[0;31mCleaning        folder objs\033[0;0m"
+	
 
 fclean:	clean
 	@make fclean -C ./libft
 	@$(RM) $(CKNAME) $(PSNAME)
-	@echo "\033[0;31mRemoving	executables\033[0;0m"
+	@echo "\033[0;31mRemoving          binaries\033[0;0m"
 
-re:	fclean all
+re: fclean all

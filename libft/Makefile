@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/11 13:46:40 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 11:09:45 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 12:21:40 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME		=	libft.a
 INC			=	libft.h
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 AR			=	ar rc
 RM			=	rm -f
 

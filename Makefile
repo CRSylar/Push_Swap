@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 11:13:26 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 12:21:05 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 
 CKNAME	=	checker
 PSNAME	=	push_swap
-CKR		=	chsrcs/checker.c
+CKR		=	chsrcs/checker.c \
+			chsrcs/chck_utils.c
 
 PSS		=	push_swap/$(wildcard *.c)
 OBPSS	=	$(addprefix $(OPS_DIR)/, $(PSS:%.c=%.o))
@@ -43,7 +44,7 @@ RM		=	rm -rf
 all: $(CKNAME) #$(PSNAME)
 
 %.o: %.c
-	@$(CC) $(CFLAG) -c $(CKR) -o $@
+	@$(CC) $(CFLAG) -c $< -o $@
 	@$(CC) $(CFLAG) -c $(INSTR)
 	@mv *.o instruction/
 	@printf "Compiling... %-33.33s\r" $@

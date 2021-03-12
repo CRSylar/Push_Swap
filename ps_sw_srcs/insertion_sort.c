@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 18:16:29 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 19:45:24 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	rra_loop(t_stack **tmp, int count)
 	while (count)
 	{
 		rra(tmp);
-		write(1, "rra\n", 3);
-		count--;
+		write(1, "rra\n", 4);
+		count++;
 	}
 }
 
@@ -48,7 +48,7 @@ int		find_min(t_stack *a, int size)
 		}
 		a = a->next;
 	}
-	if (i <= size)
+	if (i < (size / 2))
 		return(i);
 	return (-i);
 }
@@ -66,12 +66,5 @@ int		solve_insertion_sort(t_stack **a)
 	(count > 0) ? ra_loop(&tmp, count) : rra_loop(&tmp, count);
 	pb(&tmp, &b);
 	write(1, "pb\n", 3);
-	if (tmp)
-		solve_insertion_sort(&tmp);
-	while (b)
-	{
-		pa(&tmp, &b);
-		write(1, "pa\n", 3);
-	}
 	return (1);
 }

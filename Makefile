@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 19:18:27 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/12 19:27:40 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(CKNAME):
 $(PSNAME):
 	@$(CC) -c $(CFLAG) $(INCPS) $(PSS)
 	@mv *.o ps_sw_srcs/
-	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCPS) $(O_IN) $(O_PS) $(LIB)
+	@$(CC) -o $(PSNAME) $(CFLAG) $(H_INS) $(INCPS) $(O_IN) $(O_PS) $(LIB)
 	@echo "\033[0;32mCreating        $(PSNAME)\033[0;0m"
 
 clean:

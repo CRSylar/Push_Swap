@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 12:39:06 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 13:05:58 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 void	find_best_solution(t_stack **a)
 {
+	int		size_ins;
+	int		size_qk;
+	int		size_hp;
+	
+	//runna 3 algoritmi, poi vedi quello che ha usato meno istruzioni
+	size_ins = solve_insertion_sort(a);
+	size_qk = solve_quick_sort(a);
+	size_hp = solve_heap_sort(a);
 	
 }
 

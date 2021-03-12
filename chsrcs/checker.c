@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 12:16:01 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:55:01 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_input(char **av, t_stack **a)
 	while (av[i])
 	{
 		out = ft_atoi(av[i]);
-		if (errno == -1)
+		if (errno == 1)
 			return (0);
 		ft_push_stack(a, out);
 		i++;

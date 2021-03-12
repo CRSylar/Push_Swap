@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 12:33:54 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:22:19 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,33 @@ void	ft_push_stack(t_stack **a, int out)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+}
+
+int		ft_stack_size(t_stack *stack)
+{
+	int		i;
+	t_stack *tmp;
+
+	i = 0;
+	tmp = stack;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+int		stack_ordered(t_stack **a)
+{
+	t_stack *tmp;
+
+	tmp = *a;
+	while (tmp->next)
+	{
+		if (tmp->data > tmp->next->data)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

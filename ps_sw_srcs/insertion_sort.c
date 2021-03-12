@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 16:21:00 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/12 16:36:22 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include "../libft/libft.h"
-# include "instruction.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+int		solve_insertion_sort(t_stack **a)
+{
+	int		size;
+	t_stack *tmp;
 
-void	ft_push_stack(t_stack **a, int out);
-int		solve_insertion_sort(t_stack **a);
-int		ft_stack_size(t_stack *stack);
-int		stack_ordered(t_stack **a);
-
-#endif
+	tmp = *a;
+	size = ft_stack_size(tmp);
+	return (1);
+}

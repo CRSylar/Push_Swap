@@ -6,42 +6,44 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 17:21:39 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/13 17:57:18 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			ra_loop(t_stack **tmp, int count)
+int			solve_easy_2(t_stack **tmp)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (count--)
+	if (((*tmp)->data > (*tmp)->next->data) &&
+		stack_ordered(&((*tmp)->next)))
 	{
+		if ((*tmp)->data < (*tmp)->next->next->data)
+		{
+			sa(tmp);
+			write(1, "sa\n", 3);
+			i++;
+		}
 		ra(tmp);
 		write(1, "ra\n", 3);
-		i++;
+		return (++i);
 	}
-	return (i);
-}
-
-int			rra_loop(t_stack **tmp, int	count)
-{
-	int		i;
-
-	i = 0;
-	while (count--)
+	else if (((*tmp)->data < (*tmp)->next->data) &&
+		!stack_ordered(&((*tmp)->next)))
 	{
 		rra(tmp);
-		write(1, "rra\n", 4);
-		i++;
+		sa(tmp);
+		write(1, "rra\nsa\n", 6);
+		i += 2;
 	}
 	return (i);
 }
 
-int			solve_easy(t_stack **tmp)
+int			solve_easy_1(t_stack **tmp)
 {
+	int ret;
 
 	if (stack_ordered(tmp))
 		return (0);
@@ -51,51 +53,17 @@ int			solve_easy(t_stack **tmp)
 		ra(tmp);
 		sa(tmp);
 		write(1, "ra\nsa\n", 7);
-		return (1);
-	}
-	else if (((*tmp)->data < (*tmp)->next->data) &&
-		!stack_ordered(&((*tmp)->next)))
-	{
-		rra(tmp);
-		sa(tmp);
-		write(1, "rra\nsa\n", 6);
 		return (2);
 	}
-	else  if (((*tmp)->data > (*tmp)->next->data) &&
-		stack_ordered(&((*tmp)->next)))
+	else if ((*tmp)->data < (*tmp)->next->data &&
+		(*tmp)->data > (*tmp)->next->next->data)
 	{
-		if ((*tmp)->data < (*tmp)->next->next->data)
-		{
-			sa(tmp);
-			write(1, "sa\n", 3);
-		}
-		ra(tmp);
-		write(1, "ra\n", 3);
+		rra(tmp);
+		write(1, "rra\n", 4);
 		return (1);
 	}
-	return (0);
-}
-
-int			find_min(t_stack *a)
-{
-	int	index;
-	int	min;
-	int	i;
-
-	i = 0;
-	index = 0;
-	min = a->data;
-	while (a)
-	{
-		if (a->data < min)
-		{
-			min = a->data;
-			index = i;
-		}
-		a = a->next;
-		i++;
-	}
-	return (index);
+	ret = solve_easy_2(tmp);
+	return (ret);
 }
 
 int			solve_insertion_sort(t_stack **a)
@@ -119,7 +87,7 @@ int			solve_insertion_sort(t_stack **a)
 		write(1, "pb\n", 3);
 		size--;
 	}
-	c += solve_easy(&tmp);
+	c += solve_easy_1(&tmp);
 	size = ft_stack_size(b);
 	while (size)
 	{

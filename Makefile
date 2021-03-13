@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/13 12:47:15 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/13 17:54:57 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ CKR		=	chsrcs/checker.c \
 
 PSS		=	ps_sw_srcs/push_swap.c \
 			ps_sw_srcs/ps_sw_utils.c \
-			ps_sw_srcs/insertion_sort.c
+			ps_sw_srcs/insertion_sort.c \
+			ps_sw_srcs/insertion_utils.c
 
 INSTR	=	instruction/pa_pb.c \
 			instruction/ra_rb.c \

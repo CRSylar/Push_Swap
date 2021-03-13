@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 16:51:54 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/13 12:42:45 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	find_best_solution(&a);
+	free_list(a);
 	return (0);
 }

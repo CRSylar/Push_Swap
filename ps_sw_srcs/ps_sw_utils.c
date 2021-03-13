@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 17:29:01 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/13 12:41:16 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void	ft_push_stack(t_stack **a, int out)
 {
 	t_stack *new;
 	t_stack *tmp;
+	int		i;
 
+	i = 0;
 	new = malloc(sizeof(t_stack));
 	new->data = out;
+	new->pos = 0;
 	new->next = 0;
 	if (!*a)
 	{
@@ -27,7 +30,11 @@ void	ft_push_stack(t_stack **a, int out)
 	}
 	tmp = *a;
 	while (tmp->next)
+	{
+		i++;
 		tmp = tmp->next;
+	}
+	new->pos = i;
 	tmp->next = new;
 }
 
@@ -72,5 +79,17 @@ void	print_stack(t_stack *a, int stack)
 		else
 			printf("B ->[%d]\n", tmp->data);
 		tmp = tmp->next;
+	}
+}
+
+void	free_list(t_stack *a)
+{
+	t_stack *tmp;
+
+	while (a)
+	{
+		tmp = a->next;
+		free(a);
+		a = tmp;
 	}
 }

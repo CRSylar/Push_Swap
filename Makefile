@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 19:27:40 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/13 12:47:15 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +50,12 @@ $(LIB):
 
 common:
 	@$(CC) $(CFLAG) -c $(H_INS) $(INSTR)
-	@mv *.o instruction/
+	@mv *a_*.o instruction/
 
 $(CKNAME):
 	@$(CC) -c $(CFLAG) $(INCCK) $(CKR)
-	@mv *.o chsrcs/
+	@mv checker.o chsrcs/
+	@mv chck_utils.o chsrcs/
 	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCCK) $(O_IN) $(O_CK) $(LIB)
 	@echo "\033[0;32mCreating        $(CKNAME)\033[0;0m"
 
@@ -68,7 +69,7 @@ clean:
 	@make clean -C ./libft
 	@$(RM) $(O_CK) $(O_IN) $(O_PS)
 	@echo "\033[0;31mCleaning        folder objs\033[0;0m"
-	
+
 
 fclean:	clean
 	@make fclean -C ./libft

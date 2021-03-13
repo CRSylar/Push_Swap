@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 12:41:16 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/13 15:19:30 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_push_stack(t_stack **a, int out)
 	i = 0;
 	new = malloc(sizeof(t_stack));
 	new->data = out;
-	new->pos = 0;
 	new->next = 0;
 	if (!*a)
 	{
@@ -34,7 +33,6 @@ void	ft_push_stack(t_stack **a, int out)
 		i++;
 		tmp = tmp->next;
 	}
-	new->pos = i;
 	tmp->next = new;
 }
 

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 12:32:25 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/13 13:37:11 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,26 @@ int			rra_loop(t_stack **tmp, t_stack *node)
 	return (i);
 }
 
-int			check_sa(t_stack **tmp)
+int			solve_easy(t_stack **tmp)
 {
-	if ((*tmp)->data > (*tmp)->next->data)
+	t_stack *ptr;
+
+	ptr = find_min(*tmp);
+	if (stack_ordered(tmp))
+		return (0);
+	if (((*tmp)->data > (*tmp)->next->data) &&
+		((*tmp)->data != ptr->data && (*tmp)->next->data != ptr->data))
 	{
+		ra(tmp);
 		sa(tmp);
-		write(1, "sa\n", 3);
+		write(1, "rra\nsa\n", 8);
+		return (1);
+	}
+	if ((*tmp)->data == ptr->data && !stack_ordered(&((*tmp)->next)))
+	{
+		rra(tmp);
+		sa(tmp);
+		write(1, "ra\nsa\n", 8);
 		return (1);
 	}
 	return (0);
@@ -78,16 +92,16 @@ int			solve_insertion_sort(t_stack **a)
 	tmp = *a;
 	b = 0;
 	size = ft_stack_size(tmp);
-	while (size-- > 2)
+	while (size-- > 3)
 	{
-		if (stack_ordered(&tmp))
-			break ;
 		min = find_min(tmp);
 		c =	(min->pos < (size / 2)) ? ra_loop(&tmp, min) : rra_loop(&tmp, min);
+		if (stack_ordered(&tmp))
+			break ;
 		pb(&tmp, &b);
 		write(1, "pb\n", 3);
 	}
-	c += check_sa(&tmp);
+	c += solve_easy(&tmp);
 	size = ft_stack_size(b);
 	while (size--)
 	{

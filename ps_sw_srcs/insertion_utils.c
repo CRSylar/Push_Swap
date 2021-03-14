@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:36:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 17:36:58 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 10:20:04 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ra_loop(t_stack **tmp, int count)
 	return (i);
 }
 
-int			rra_loop(t_stack **tmp, int	count)
+int			rra_loop(t_stack **tmp, int count)
 {
 	int		i;
 

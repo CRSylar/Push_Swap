@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:35:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 10:42:32 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 10:18:20 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rra(t_stack **a)
 	tmp = *a;
 	while (tmp->next->next)
 		tmp = tmp->next;
-	ptr =  tmp->next;
+	ptr = tmp->next;
 	tmp->next = 0;
 	ptr->next = *a;
 	*a = ptr;

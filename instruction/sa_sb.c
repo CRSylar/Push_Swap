@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:06:30 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 17:53:57 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 10:18:33 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	sa(t_stack **a)
 		return ;
 	tmp = (*a)->data;
 	(*a)->data = (*a)->next->data;
-	(*a)->next->data = tmp; 
+	(*a)->next->data = tmp;
 }
 
 void	sb(t_stack **b)
 {
 	int	tmp;
-	
+
 	if (!*b || !(*b)->next)
 		return ;
 	tmp = (*b)->data;

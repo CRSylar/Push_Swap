@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/12 17:26:16 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 10:16:00 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	check_sol(t_list *instr, t_stack **a)
 			write(2, "Error\n", 6);
 			return ;
 		}
-		print_stack(*a, 1);
-		printf("-----------\n");
-		print_stack(b, 2);
-		printf("___________\n");
 		instr = instr->next;
 	}
 	tmp = *a;
@@ -90,8 +86,8 @@ int		check_input(char **av, t_stack **a)
 
 int		main(int ac, char **av)
 {
-	t_stack	*a;
-	
+	t_stack		*a;
+
 	a = 0;
 	if (ac > 1)
 	{

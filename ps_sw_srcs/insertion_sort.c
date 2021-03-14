@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 16:41:40 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 18:15:26 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static	int			solve_easy_1(t_stack **tmp)
 	{
 		ra(tmp, 0);
 		sa(tmp, 0);
-		write(1, "ra\nsa\n", 7);
+		write(1, "ra\nsa\n", 6);
 		return (2);
 	}
 	else if ((*tmp)->data < (*tmp)->next->data &&

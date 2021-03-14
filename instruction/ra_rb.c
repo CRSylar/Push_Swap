@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:31:37 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 12:07:07 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 17:52:12 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ra(t_stack **a, char flag)
 {
 	t_stack *tmp;
 
-	if (!a || !*a)
+	if (!a || !*a || !(*a)->next)
 		return ;
 	tmp = *a;
 	while (tmp->next)
@@ -31,7 +31,7 @@ void	rb(t_stack **b, char flag)
 {
 	t_stack *tmp;
 
-	if (!b || !*b)
+	if (!b || !*b || !(*b)->next)
 		return ;
 	tmp = *b;
 	while (tmp->next)

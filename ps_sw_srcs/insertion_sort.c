@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 11:55:28 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 16:41:40 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			solve_easy_2(t_stack **tmp)
+static	int			solve_easy_2(t_stack **tmp)
 {
 	int i;
 
@@ -41,7 +41,7 @@ int			solve_easy_2(t_stack **tmp)
 	return (i);
 }
 
-int			solve_easy_1(t_stack **tmp)
+static	int			solve_easy_1(t_stack **tmp)
 {
 	int ret;
 
@@ -66,7 +66,7 @@ int			solve_easy_1(t_stack **tmp)
 	return (ret);
 }
 
-int			clean_b(t_stack *tmp, t_stack *b)
+static	int			clean_b(t_stack *tmp, t_stack *b)
 {
 	int	size;
 	int	c;
@@ -83,7 +83,7 @@ int			clean_b(t_stack *tmp, t_stack *b)
 	return (c);
 }
 
-int			solve_insertion_sort(t_stack **a)
+int					solve_insertion_sort(t_stack **a)
 {
 	int				size;
 	int				min;

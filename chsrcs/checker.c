@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 12:41:58 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 18:02:09 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_sol(t_list *instr, t_stack **a, char flag)
 	tmp = *a;
 	while (tmp->next)
 	{
-		if (!(tmp->data < tmp->next->data))
+		if (!(tmp->data < tmp->next->data) && !b)
 		{
 			(flag & COLOR) ? clr_wr("KO", 0) : write(1, "KO\n", 3);
 			return ;

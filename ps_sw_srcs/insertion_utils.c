@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:36:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 10:20:04 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 12:02:04 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ra_loop(t_stack **tmp, int count)
 	i = 0;
 	while (count--)
 	{
-		ra(tmp);
+		ra(tmp, 0);
 		write(1, "ra\n", 3);
 		i++;
 	}
@@ -33,7 +33,7 @@ int			rra_loop(t_stack **tmp, int count)
 	i = 0;
 	while (count--)
 	{
-		rra(tmp);
+		rra(tmp, 0);
 		write(1, "rra\n", 4);
 		i++;
 	}

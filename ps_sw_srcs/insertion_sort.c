@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 10:26:40 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 11:55:28 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int			solve_easy_2(t_stack **tmp)
 	{
 		if ((*tmp)->data < (*tmp)->next->next->data)
 		{
-			sa(tmp);
+			sa(tmp, 0);
 			write(1, "sa\n", 3);
 			i++;
 		}
-		ra(tmp);
+		ra(tmp, 0);
 		write(1, "ra\n", 3);
 		return (++i);
 	}
 	else if (((*tmp)->data < (*tmp)->next->data) &&
 		!stack_ordered(&((*tmp)->next)))
 	{
-		rra(tmp);
-		sa(tmp);
+		rra(tmp, 0);
+		sa(tmp, 0);
 		write(1, "rra\nsa\n", 7);
 		i += 2;
 	}
@@ -50,15 +50,15 @@ int			solve_easy_1(t_stack **tmp)
 	if ((((*tmp)->data > (*tmp)->next->data)) &&
 		((*tmp)->next->data > (*tmp)->next->next->data))
 	{
-		ra(tmp);
-		sa(tmp);
+		ra(tmp, 0);
+		sa(tmp, 0);
 		write(1, "ra\nsa\n", 7);
 		return (2);
 	}
 	else if ((*tmp)->data < (*tmp)->next->data &&
 		(*tmp)->data > (*tmp)->next->next->data)
 	{
-		rra(tmp);
+		rra(tmp, 0);
 		write(1, "rra\n", 4);
 		return (1);
 	}
@@ -75,7 +75,7 @@ int			clean_b(t_stack *tmp, t_stack *b)
 	size = ft_stack_size(b);
 	while (size)
 	{
-		pa(&tmp, &b);
+		pa(&tmp, &b, 0);
 		write(1, "pa\n", 3);
 		c++;
 		size--;
@@ -102,7 +102,7 @@ int			solve_insertion_sort(t_stack **a)
 			rra_loop(&tmp, size - min);
 		if (stack_ordered(&tmp))
 			break ;
-		pb(&tmp, &b);
+		pb(&tmp, &b, 0);
 		write(1, "pb\n", 3);
 		size--;
 		c++;

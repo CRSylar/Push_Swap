@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/11 13:46:40 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/12 12:21:40 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/14 12:38:03 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME		=	libft.a
 INC			=	libft.h
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 AR			=	ar rc
 RM			=	rm -f
 
@@ -37,7 +37,7 @@ bonus:	$(BONOBJS) $(OBJS)
 %.o: %.c $(INC)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-clean:	
+clean:
 	@$(RM) $(OBJS) $(BONOBJS)
 
 fclean:	clean

@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:25:21 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 10:17:08 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 11:58:19 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/instruction.h"
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, char flag)
 {
 	t_stack *tmp;
 
@@ -22,9 +22,10 @@ void	pa(t_stack **a, t_stack **b)
 	*b = (*b)->next;
 	tmp->next = *a;
 	*a = tmp;
+	(flag & DEBUG) ? write(1, "-*- PA -*-\n", 11) : 0;
 }
 
-void	pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b, char flag)
 {
 	t_stack *tmp;
 
@@ -34,4 +35,5 @@ void	pb(t_stack **a, t_stack **b)
 	*a = (*a)->next;
 	tmp->next = *b;
 	*b = tmp;
+	(flag & DEBUG) ? write(1, "-*- PB -*-\n", 11) : 0;
 }

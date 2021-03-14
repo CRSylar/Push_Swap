@@ -6,25 +6,25 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 10:16:00 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/14 12:41:58 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	check_sol(t_list *instr, t_stack **a)
+void	check_sol(t_list *instr, t_stack **a, char flag)
 {
-	t_stack *b;
-	t_stack *tmp;
+	static t_stack	*b;
+	t_stack			*tmp;
 
-	b = 0;
 	while (instr)
 	{
-		if (find_command(instr->content, a, &b) == -1)
+		if (find_command(instr->content, a, &b, flag) == -1)
 		{
 			write(2, "Error\n", 6);
 			return ;
 		}
+		(flag) ? execute_flag(flag, *a, b) : 0;
 		instr = instr->next;
 	}
 	tmp = *a;
@@ -32,16 +32,16 @@ void	check_sol(t_list *instr, t_stack **a)
 	{
 		if (!(tmp->data < tmp->next->data))
 		{
-			write(1, "KO\n", 3);
+			(flag & COLOR) ? clr_wr("KO", 0) : write(1, "KO\n", 3);
 			return ;
 		}
 		tmp = tmp->next;
 	}
-	write(1, "OK\n", 3);
+	(flag & COLOR) ? clr_wr("OK", 1) : write(1, "OK\n", 3);
 	return ;
 }
 
-int		read_inst(t_stack *a)
+int		read_inst(t_stack *a, char flag)
 {
 	int		ret;
 	char	*line;
@@ -55,17 +55,17 @@ int		read_inst(t_stack *a)
 			return (ret);
 		ft_lstadd_back(&instr, ft_lstnew(line));
 	}
-	check_sol(instr, &a);
+	check_sol(instr, &a, flag);
 	return (0);
 }
 
-int		check_input(char **av, t_stack **a)
+int		check_input(char **av, t_stack **a, char *flag)
 {
 	int			i;
 	int			out;
-	t_stack		*tmp;
 
 	i = 1;
+	i += check_flag(flag, av);
 	while (av[i])
 	{
 		out = ft_atoi(av[i]);
@@ -74,29 +74,25 @@ int		check_input(char **av, t_stack **a)
 		ft_push_stack(a, out);
 		i++;
 	}
-	tmp = *a;
-	while (tmp->next)
-	{
-		if (tmp->data == tmp->next->data)
-			return (0);
-		tmp = tmp->next;
-	}
+	if (check_duplicates(a))
+		return (0);
 	return (1);
 }
 
 int		main(int ac, char **av)
 {
 	t_stack		*a;
+	static char	flag;
 
 	a = 0;
 	if (ac > 1)
 	{
-		if (!check_input(av, &a))
+		if (!check_input(av, &a, &flag))
 		{
 			write(2, "Error\n", 6);
 			return (1);
 		}
-		if (read_inst(a) == -1)
+		if (read_inst(a, flag) == -1)
 		{
 			write(2, "Error\n", 6);
 			return (1);

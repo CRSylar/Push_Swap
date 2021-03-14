@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/13 17:54:57 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/14 11:47:32 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CKNAME	=	checker
 PSNAME	=	push_swap
 LIB		=	libft/libft.a
 CKR		=	chsrcs/checker.c \
-			chsrcs/chck_utils.c
+			chsrcs/chck_utils.c \
+			chsrcs/bonus_utils.c
 
 PSS		=	ps_sw_srcs/push_swap.c \
 			ps_sw_srcs/ps_sw_utils.c \
@@ -57,6 +58,7 @@ $(CKNAME):
 	@$(CC) -c $(CFLAG) $(INCCK) $(CKR)
 	@mv checker.o chsrcs/
 	@mv chck_utils.o chsrcs/
+	@mv bonus_utils.o chsrcs/
 	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCCK) $(O_IN) $(O_CK) $(LIB)
 	@echo "\033[0;32mCreating        $(CKNAME)\033[0;0m"
 

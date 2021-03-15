@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 15:04:32 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:22:15 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+# define MAX(x,y) ((x > y) ? x : y)
 
 void		ft_push_stack(t_stack **a, int out);
 int			ft_stack_size(t_stack *stack);
@@ -37,5 +39,7 @@ int			find_min(t_stack *a);
 ** Quick Sort **
 */
 t_stack		*stack_copy(t_stack **a);
+int			*copy_stack(t_stack *a, int size);
+void		create_index(int *sorted, t_stack **a, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 15:35:30 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:44:25 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,47 +33,40 @@ void	sort_array(int *array, int size)
 	}
 }
 
-void	create_index(int *sorted, t_stack **a, int size)
+void	find_seq(int *a_cpy, int size)
 {
+	int		tmp[size];
 	int		i;
-	t_stack	*tmp;
+	int		j;
 
-	tmp = *a;
-	while (tmp)
+	j = 0;
+	while (j < size)
+		tmp[j++] = 1;
+	j = 0;
+	while (j < size)
 	{
 		i = 0;
-		while (i < size)
+		while (i < j)
 		{
-			if (tmp->data == sorted[i])
-			tmp->index = i;
+			if (a_cpy[i] < a_cpy[j] && tmp[i] == tmp[j])
+				tmp[j]++;
 			i++;
 		}
-		tmp = tmp->next;
+		j++;
 	}
 }
 
 int		solve_quick_sort(t_stack *a)
 {
-	int		i;
 	int		size;
 	int		*sorted;
-	t_stack	*tmp;
+	int		*a_cpy;
 
-	tmp = a;
-	i = 0;
 	size = ft_stack_size(a);
-	sorted = malloc(size * sizeof(int));
-	while (tmp)
-	{
-		sorted[i++] = tmp->data;
-		tmp = tmp->next;
-	}
+	sorted = copy_stack(a, size);
+	a_cpy = copy_stack(a, size);
 	sort_array(sorted, size);
 	create_index(sorted, &a, size);
-	/* while (a)
-	{
-		printf("(%d)--[%d]\n", a->data, a->index);
-		a = a->next;
-	} */
+	find_seq(a_cpy, size);
 	return (1);
 }

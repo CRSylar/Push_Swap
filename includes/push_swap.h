@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 17:38:51 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:04:32 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ void		print_stack(t_stack *a, int stack);
 void		free_list(t_stack *a);
 
 int			solve_insertion_sort(t_stack **a);
+int		solve_quick_sort(t_stack *a);
 /*
 ** Instertion utils **
 */
 int			ra_loop(t_stack **tmp, int count);
 int			rra_loop(t_stack **tmp, int	count);
 int			find_min(t_stack *a);
+/*
+** Quick Sort **
+*/
+t_stack		*stack_copy(t_stack **a);
 
 #endif

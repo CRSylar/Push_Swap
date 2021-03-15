@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 16:38:27 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:09:57 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	find_best_solution(t_stack **a)
 {
+	t_stack *cpy;
 	int		size_ins;
-	//int		size_qk;
+	int		size_qk;
 
 /*
 **	 prima controlla non sia gia in ordine **
@@ -25,8 +26,10 @@ void	find_best_solution(t_stack **a)
 /*
 **	runna gli algoritmi, poi vedi quello che ha usato meno istruzioni **
 */
-	size_ins = solve_insertion_sort(a);
-//	size_qk = solve_quick_sort(a);
+	cpy = stack_copy(a);
+	size_ins = solve_insertion_sort(&cpy);
+	cpy = stack_copy(a);
+	size_qk = solve_quick_sort(cpy);
 }
 
 int		check_input(char **av, t_stack **a)

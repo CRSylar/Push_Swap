@@ -5,41 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 12:52:24 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 17:19:34 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/15 15:35:30 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	quick_sort(t_stack *tmp, t_stack *b)
+void	sort_array(int *array, int size)
 {
-
-}
-
-int		solve_quick_sort(t_stack **a)
-{
-	t_stack *tmp;
-	t_stack *b;
-	int		size;
+	int		tmp;
 	int		i;
 
-	i = -1;
-	tmp = *a;
-	b = 0;
-	size = stack_size(*a);
-	while (++i < (size / 2))
-		tmp = tmp->next;
-	i = tmp->data;
-	tmp = *a;
-	while (tmp->next)
+	tmp = 0;
+	i = 0;
+	while (i < (size - 1))
 	{
-		if (tmp->data < i)
+		if (array[i] <= array[i + 1])
+			i++;
+		else
 		{
-			pa(a, &b, 0);
-			write(1, "pa\n", 3);
+			tmp = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = tmp;
+			i = 0;
+		}
+	}
+}
+
+void	create_index(int *sorted, t_stack **a, int size)
+{
+	int		i;
+	t_stack	*tmp;
+
+	tmp = *a;
+	while (tmp)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (tmp->data == sorted[i])
+			tmp->index = i;
+			i++;
 		}
 		tmp = tmp->next;
 	}
-	quick_sort(tmp, b);
+}
+
+int		solve_quick_sort(t_stack *a)
+{
+	int		i;
+	int		size;
+	int		*sorted;
+	t_stack	*tmp;
+
+	tmp = a;
+	i = 0;
+	size = ft_stack_size(a);
+	sorted = malloc(size * sizeof(int));
+	while (tmp)
+	{
+		sorted[i++] = tmp->data;
+		tmp = tmp->next;
+	}
+	sort_array(sorted, size);
+	create_index(sorted, &a, size);
+	/* while (a)
+	{
+		printf("(%d)--[%d]\n", a->data, a->index);
+		a = a->next;
+	} */
+	return (1);
 }

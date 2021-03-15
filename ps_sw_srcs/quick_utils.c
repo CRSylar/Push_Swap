@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort_utils.c                                 :+:      :+:    :+:   */
+/*   quick_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 15:58:09 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 15:59:46 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/15 14:57:09 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/15 15:09:36 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		stack_size(t_stack *stack)
+t_stack		*stack_copy(t_stack **a)
 {
-	t_stack *tmp;
-	int		i;
+	t_stack *ret;
+	t_stack	*tmp;
 
-	if (!stack)
-		return (0);
-	tmp = stack;
+	tmp = *a;
+	ret = 0;
 	while (tmp)
 	{
-		i++;
+		ft_push_stack(&ret, tmp->data);
 		tmp = tmp->next;
 	}
-	i++;
+	return (ret);
 }

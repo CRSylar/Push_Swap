@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 18:15:26 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/15 14:41:56 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	int			solve_easy_2(t_stack **tmp)
 		{
 			sa(tmp, 0);
 			write(1, "sa\n", 3);
-			i++;
+			return (++i);
 		}
 		ra(tmp, 0);
 		write(1, "ra\n", 3);
@@ -95,7 +95,7 @@ int					solve_insertion_sort(t_stack **a)
 	b = 0;
 	c = 0;
 	size = ft_stack_size(tmp);
-	while (size > 3)
+	while (size > 3 && ++c)
 	{
 		min = find_min(tmp);
 		c += (min < (size / 2)) ? ra_loop(&tmp, min) :
@@ -105,7 +105,6 @@ int					solve_insertion_sort(t_stack **a)
 		pb(&tmp, &b, 0);
 		write(1, "pb\n", 3);
 		size--;
-		c++;
 	}
 	c += solve_easy_1(&tmp) + clean_b(tmp, b);
 	return (c);

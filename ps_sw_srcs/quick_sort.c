@@ -6,54 +6,64 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 18:44:25 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 13:01:54 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	sort_array(int *array, int size)
+void	find_best_insertion(t_stack **tmp, t_stack **b)
 {
-	int		tmp;
-	int		i;
-
-	tmp = 0;
-	i = 0;
-	while (i < (size - 1))
-	{
-		if (array[i] <= array[i + 1])
-			i++;
-		else
-		{
-			tmp = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = tmp;
-			i = 0;
-		}
-	}
+	print_stack(*tmp, 1);
+	print_stack(*b, 2);
 }
 
-void	find_seq(int *a_cpy, int size)
+void	init_solv(t_stack *a, int *seq, int seq_sz)
 {
-	int		tmp[size];
-	int		i;
-	int		j;
+	t_stack	*tmp;
+	t_stack	*b;
+	int		count;
 
-	j = 0;
-	while (j < size)
-		tmp[j++] = 1;
-	j = 0;
-	while (j < size)
+	b = 0;
+	tmp = a;
+	count = seq_sz;
+	while (tmp && count)
 	{
-		i = 0;
-		while (i < j)
+		if (!is_in_sequence(tmp->data, seq, seq_sz))
 		{
-			if (a_cpy[i] < a_cpy[j] && tmp[i] == tmp[j])
-				tmp[j]++;
-			i++;
+			pb(&tmp, &b, 0);
+			write(1, "pb\n", 3);
 		}
-		j++;
+		else
+		{
+			count--;
+			ra(&tmp, 0);
+			write(1, "ra\n", 3);
+		}
 	}
+	find_best_insertion(&tmp, &b);
+}
+
+void	find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size)
+{
+	int		max_v;
+	int		m_v_cpy;
+	int		*seq_v;
+
+	max_v = 0;
+	find_max(&max_v, tmp, size);
+	m_v_cpy = max_v;
+	seq_v = malloc(sizeof(int) * max_v);
+	while (size > 0)
+	{
+		if (tmp[size] == max_v)
+		{
+			seq_v[max_v - 1] = a_cpy[size];
+			max_v--;
+		}
+		size--;
+	}
+	init_solv(a, seq_v, m_v_cpy);
 }
 
 int		solve_quick_sort(t_stack *a)
@@ -67,6 +77,7 @@ int		solve_quick_sort(t_stack *a)
 	a_cpy = copy_stack(a, size);
 	sort_array(sorted, size);
 	create_index(sorted, &a, size);
-	find_seq(a_cpy, size);
+	free(sorted);
+	build_seq(a, a_cpy, size);
 	return (1);
 }

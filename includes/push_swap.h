@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 18:22:15 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:05:29 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 
 # define MAX(x,y) ((x > y) ? x : y)
 
+# define DEBUG	0x00000001
+# define COLOR	0x00000010
+# define YLL	"\x1b[33m"
+# define GRN	"\x1b[32m"
+# define RED	"\x1b[31m"
+# define NC		"\033[0m"
+# define BLINK	"\x1b[5m"
+
 void		ft_push_stack(t_stack **a, int out);
 int			ft_stack_size(t_stack *stack);
 int			stack_ordered(t_stack **a);
@@ -28,7 +36,7 @@ void		print_stack(t_stack *a, int stack);
 void		free_list(t_stack *a);
 
 int			solve_insertion_sort(t_stack **a);
-int		solve_quick_sort(t_stack *a);
+int			solve_quick_sort(t_stack *a);
 /*
 ** Instertion utils **
 */
@@ -41,5 +49,12 @@ int			find_min(t_stack *a);
 t_stack		*stack_copy(t_stack **a);
 int			*copy_stack(t_stack *a, int size);
 void		create_index(int *sorted, t_stack **a, int size);
+void		find_max(int *i, int *tmp, int size);
+void		save_seq(int *sorted, int i, int *tmp, int size);
+void		sort_array(int *array, int size);
+
+int			is_in_sequence(int data, int *seq, int seq_sz);
+void		build_seq(t_stack *a, int *a_cpy, int size);
+void		find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size);
 
 #endif

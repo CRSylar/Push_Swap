@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:57:09 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 18:14:45 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 10:55:12 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,40 @@ void	create_index(int *sorted, t_stack **a, int size)
 			i++;
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	find_max(int *i, int *tmp, int size)
+{
+	int j;
+
+	j = 0;
+	*i = tmp[j];
+	while (j < size)
+	{
+		if ((*i) < tmp[j])
+			*i = tmp[j];
+		j++;
+	}
+}
+
+void	sort_array(int *array, int size)
+{
+	int		tmp;
+	int		i;
+
+	tmp = 0;
+	i = 0;
+	while (i < (size - 1))
+	{
+		if (array[i] <= array[i + 1])
+			i++;
+		else
+		{
+			tmp = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = tmp;
+			i = 0;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/13 15:19:30 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:05:04 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	print_stack(t_stack *a, int stack)
 	while (tmp)
 	{
 		if (stack == 1)
-			printf("A ->[%d]\n", tmp->data);
+			printf(GRN"A ->[%d]-idx-[%d]"NC"\n", tmp->data, tmp->index);
 		else
-			printf("B ->[%d]\n", tmp->data);
+			printf(YLL"B ->[%d]-idx-[%d]"NC"\n", tmp->data, tmp->index);
 		tmp = tmp->next;
 	}
 }

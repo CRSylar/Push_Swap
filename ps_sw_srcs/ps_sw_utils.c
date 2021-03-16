@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 12:05:04 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:49:28 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_push_stack(t_stack **a, int out)
 	new = malloc(sizeof(t_stack));
 	new->data = out;
 	new->next = 0;
+	new->prev = 0;
 	if (!*a)
 	{
 		*a = new;
@@ -34,6 +35,7 @@ void	ft_push_stack(t_stack **a, int out)
 		tmp = tmp->next;
 	}
 	tmp->next = new;
+	new->prev = tmp;
 }
 
 int		ft_stack_size(t_stack *stack)
@@ -73,9 +75,11 @@ void	print_stack(t_stack *a, int stack)
 	while (tmp)
 	{
 		if (stack == 1)
-			printf(GRN"A ->[%d]-idx-[%d]"NC"\n", tmp->data, tmp->index);
+			printf(GRN"A ->[%d]-idx-[%d]-pos-[%d]"NC"\n",
+			tmp->data, tmp->index, tmp->pos);
 		else
-			printf(YLL"B ->[%d]-idx-[%d]"NC"\n", tmp->data, tmp->index);
+			printf(YLL"B ->[%d]-idx-[%d]-pos-[%d]"NC"\n",
+			tmp->data, tmp->index, tmp->pos);
 		tmp = tmp->next;
 	}
 }

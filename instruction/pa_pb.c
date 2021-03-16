@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:25:21 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 11:58:19 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:10:10 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	pa(t_stack **a, t_stack **b, char flag)
 		return ;
 	tmp = *b;
 	*b = (*b)->next;
+	(*b)->prev = 0;
 	tmp->next = *a;
+	(*a) ? (*a)->prev = tmp : 0;
 	*a = tmp;
 	(flag & DEBUG) ? write(1, "-*- PA -*-\n", 11) : 0;
 }
@@ -33,7 +35,9 @@ void	pb(t_stack **a, t_stack **b, char flag)
 		return ;
 	tmp = *a;
 	*a = (*a)->next;
+	(*a)->prev = 0;
 	tmp->next = *b;
+	(*b) ? (*b)->prev = tmp : 0;
 	*b = tmp;
 	(flag & DEBUG) ? write(1, "-*- PB -*-\n", 11) : 0;
 }

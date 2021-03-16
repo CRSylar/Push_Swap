@@ -6,14 +6,78 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 13:01:54 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:19:18 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+int		rotate_stacks(t_stack **a, t_stack **b, int *mv_idx, int i)
+{
+	int	a_sz;
+	int	b_sz;
+	int count = 0;
+i++;
+	a_sz = ft_stack_size(*a);
+	b_sz = ft_stack_size(*b);
+	while ((*b)->pos != mv_idx[1])
+	{
+		if (mv_idx[1] > (b_sz / 2))
+		{
+			rrb(b, 0);
+			write(1, "rrb\n", 4);
+		}
+		else
+		{
+			rb(b, 0);
+			write(1, "rb\n", 3);
+		}
+		count++;
+	}
+	/* while (((*a)->index != mv_idx[0] - 1) && ((*a)->index != mv_idx[0] + 1))
+	{
+		if ((*a)->index > (a_sz / 2))
+			rra(a, 0);
+		else
+			ra(a, 0);
+		count++;
+	} */
+	pa(a, b, 0);
+	write(1, "pa\n", 3);
+	return (count + 1);
+}
+
 void	find_best_insertion(t_stack **tmp, t_stack **b)
 {
+	int		b_sz;
+	int		a_sz;
+	int		*mv_idx;
+	int		i;
+	int		ope;
+
+	i = 1;
+	ope = 0;
+	a_sz = ft_stack_size(*tmp);
+	b_sz = ft_stack_size(*b);
+	while (b_sz > 4)
+	{
+		b_sz = ft_stack_size(*b);
+		built_position(b);
+		built_position(tmp);
+		while (1)
+		{
+			mv_idx = parse_b(tmp, b, i);
+			if ((mv_idx[1] > (b_sz - 3)) || (mv_idx[1] < (b_sz + 3)))
+			{
+				ope += rotate_stacks(tmp, b, mv_idx, i);
+				break;
+			}
+			else
+				i++;
+		}
+	}
+	//printf("ope[%d]\n", ope);
+	printf("{%d}-[%d]\n", mv_idx[0], mv_idx[1]);
 	print_stack(*tmp, 1);
 	print_stack(*b, 2);
 }

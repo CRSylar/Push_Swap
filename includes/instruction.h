@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:55:35 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/15 15:15:54 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:48:55 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct		s_stack
 {
 	int				data;
 	int				index;
+	int				pos;
 	struct s_stack	*next;
+	struct s_stack	*prev;
 }					t_stack;
 
 void				sa(t_stack **a, char flag);

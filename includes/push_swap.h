@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 12:05:29 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 15:42:46 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 
 # define MAX(x,y) ((x > y) ? x : y)
+# define ABS(x) ((x > 0) ? x : -x)
 
 # define DEBUG	0x00000001
 # define COLOR	0x00000010
@@ -56,5 +57,7 @@ void		sort_array(int *array, int size);
 int			is_in_sequence(int data, int *seq, int seq_sz);
 void		build_seq(t_stack *a, int *a_cpy, int size);
 void		find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size);
+void		built_position(t_stack **b);
+int			*parse_b(t_stack **a, t_stack **b, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:15:22 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 12:39:26 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:51:47 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_push_stack(t_stack **a, int out)
 	new = malloc(sizeof(t_stack));
 	new->data = out;
 	new->next = 0;
+	new->prev = 0;
 	if (!*a)
 	{
 		*a = new;
@@ -29,6 +30,7 @@ void	ft_push_stack(t_stack **a, int out)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	new->prev = tmp;
 }
 
 int		find_command(char *instr, t_stack **a, t_stack **b, char flag)

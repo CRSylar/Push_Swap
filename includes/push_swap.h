@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 15:42:46 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/17 15:37:47 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ void		find_max(int *i, int *tmp, int size);
 void		save_seq(int *sorted, int i, int *tmp, int size);
 void		sort_array(int *array, int size);
 
+void		built_position(t_stack **a, t_stack **b);
 int			is_in_sequence(int data, int *seq, int seq_sz);
-void		build_seq(t_stack *a, int *a_cpy, int size);
-void		find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size);
-void		built_position(t_stack **b);
+int			build_seq(t_stack *a, int *a_cpy, int size);
+int			find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size);
 int			*parse_b(t_stack **a, t_stack **b, int i);
+
+int			r_loop(t_stack **a, t_stack **b, int best[]);
+int			rr_loop(t_stack **a, t_stack **b, int best[]);
+
+int			calc_rotation(t_stack **b, int best[]);
 
 #endif

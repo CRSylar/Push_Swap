@@ -6,80 +6,66 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 18:19:18 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/17 13:40:33 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		rotate_stacks(t_stack **a, t_stack **b, int *mv_idx, int i)
+int		find_best_insertion(t_stack **a, t_stack **b)
 {
-	int	a_sz;
-	int	b_sz;
-	int count = 0;
-i++;
-	a_sz = ft_stack_size(*a);
-	b_sz = ft_stack_size(*b);
-	while ((*b)->pos != mv_idx[1])
-	{
-		if (mv_idx[1] > (b_sz / 2))
-		{
-			rrb(b, 0);
-			write(1, "rrb\n", 4);
-		}
-		else
-		{
-			rb(b, 0);
-			write(1, "rb\n", 3);
-		}
-		count++;
-	}
-	/* while (((*a)->index != mv_idx[0] - 1) && ((*a)->index != mv_idx[0] + 1))
-	{
-		if ((*a)->index > (a_sz / 2))
-			rra(a, 0);
-		else
-			ra(a, 0);
-		count++;
-	} */
-	pa(a, b, 0);
-	write(1, "pa\n", 3);
-	return (count + 1);
-}
-
-void	find_best_insertion(t_stack **tmp, t_stack **b)
-{
-	int		b_sz;
+	t_stack	*b_end;
+	t_stack	*b_tmp;
+	t_stack *a_tmp;
 	int		a_sz;
-	int		*mv_idx;
 	int		i;
-	int		ope;
+	int		count;
+	int		best_top[3];
+	int		best_bottom[3];
 
-	i = 1;
-	ope = 0;
-	a_sz = ft_stack_size(*tmp);
-	b_sz = ft_stack_size(*b);
-	while (b_sz > 4)
+	i = 0;
+	count = 0;
+	b_end = *b;
+	b_tmp = *b;
+	a_tmp = *a;
+	a_sz = (ft_stack_size(a_tmp) - count);
+	while (b_end->next)
+		b_end = b_end->next;
+	best_top[0] = ABS((a_tmp->index - b_tmp->index));
+	best_bottom[0] = ABS((a_tmp->index - b_end->index));
+	best_bottom[1] = a_sz;
+	best_top[1] = a_sz;
+	//printf("top[%d] - bottom[%d]\n", best_top, best_bottom);
+	while (i < 4)
 	{
-		b_sz = ft_stack_size(*b);
-		built_position(b);
-		built_position(tmp);
-		while (1)
+		a_tmp = *a;
+		count = 0;
+		while (a_tmp)
 		{
-			mv_idx = parse_b(tmp, b, i);
-			if ((mv_idx[1] > (b_sz - 3)) || (mv_idx[1] < (b_sz + 3)))
+			if ((ABS((a_tmp->index - b_tmp->index)) < best_top[0])
+				&& count < best_top[1])
 			{
-				ope += rotate_stacks(tmp, b, mv_idx, i);
-				break;
+				best_top[0] = ABS((a_tmp->index - b_tmp->index));
+				best_top[1] = count;
+				best_top[2] = b_tmp->index;
 			}
-			else
-				i++;
+			if ((ABS((a_tmp->index - b_end->index)) <= best_bottom[0])
+				&& (a_sz - count)  < best_bottom[1])
+			{
+				best_bottom[0] = ABS((a_tmp->index - b_end->index));
+				best_bottom[1] = a_sz - count;
+				best_bottom[2] = b_end->index;
+			}
+			a_tmp = a_tmp->next;
+			count++;
 		}
+		b_tmp = b_tmp->next;
+		b_end = b_end->prev;
+		i++;
 	}
-	//printf("ope[%d]\n", ope);
-	printf("{%d}-[%d]\n", mv_idx[0], mv_idx[1]);
-	print_stack(*tmp, 1);
-	print_stack(*b, 2);
+	printf("B-> [%d]", best_bottom[2]);
+	printf("top[%d]/[%d] - bottom[%d]/[%d]\n", best_top[0], best_top[1], best_bottom[0], best_bottom[1]);
+	return (1);
 }
 
 void	init_solv(t_stack *a, int *seq, int seq_sz)
@@ -105,6 +91,8 @@ void	init_solv(t_stack *a, int *seq, int seq_sz)
 			write(1, "ra\n", 3);
 		}
 	}
+	print_stack(tmp, 1);
+	print_stack(b, 2);
 	find_best_insertion(&tmp, &b);
 }
 

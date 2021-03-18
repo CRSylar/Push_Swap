@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:03:29 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/17 16:58:49 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:13:11 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,71 +15,102 @@
 int		r_loop(t_stack **a, t_stack **b, int best[])
 {
 	int	ret;
-	int	count_b_rot;
 
 	ret = 0;
-	built_position(a, b);
-	count_b_rot = calc_rotation(b, best);
-	if (count_b_rot || best[1])
+	if ((best[0] * best[2]) > 0)
 	{
-		while (count_b_rot && best[1])
+		while (best[0] && best[2])
 		{
 			rr(a, b, 0);
-			write(1, "rr\n", 4);
-			count_b_rot--;
-			best[1]--;
+			write(1, "rr\n", 3);
+			best[0]--;
+			best[2]--;
 			ret++;
 		}
-		while (count_b_rot)
-		{
-			rb(b, 0);
-			write(1, "rb\n", 4);
-			count_b_rot--;
-			ret++;
-		}
-		while (best[1])
+		while (best[0])
 		{
 			ra(a, 0);
-			write(1, "ra\n", 4);
-			best[1]--;
+			write(1, "ra\n", 3);
+			best[0]--;
 			ret++;
 		}
-		pa(a, b, 0);
-		write(1, "pa\n", 3);
-		ret++;
+		while (best[2])
+		{
+			rb(b, 0);
+			write(1, "rb\n", 3);
+			best[2]--;
+			ret++;
+		}
 	}
-	return (1);
+	else
+	{
+		while (best[0])
+		{
+			rra(a, 0);
+			write(1, "rra\n", 4);
+			(best[0] < 0) ? best[0]++ : best[0]--;
+			ret++;
+		}
+		while (best[2])
+		{
+			rb(b, 0);
+			write(1, "rb\n", 3);
+			best[2]--;
+			ret++;
+		}
+	}
+	pa(a, b, 0);
+	write(1, "pa\n", 3);
+	ret++;
+	return (ret);
 }
 
 int		rr_loop(t_stack **a, t_stack **b, int best[])
 {
 	int	ret;
-	int	count_b_rot;
 
 	ret = 0;
-	built_position(a, b);
-	count_b_rot = ft_stack_size(*b) - calc_rotation(b, best);
-	while (count_b_rot && best[1])
+	if ((best[0] * best[2]) > 0)
 	{
-		rrr(a, b, 0);
-		write(1, "rrr\n", 4);
-		count_b_rot--;
-		best[1]--;
-		ret++;
+		while (best[0] && best[2])
+		{
+			rrr(a, b, 0);
+			write(1, "rrr\n", 4);
+			best[0]++;
+			best[2]++;
+			ret++;
+		}
+		while (best[0])
+		{
+			rra(a, 0);
+			write(1, "rra\n", 4);
+			best[0]++;
+			ret++;
+		}
+		while (best[2])
+		{
+			rrb(b, 0);
+			write(1, "rrb\n", 4);
+			best[2]++;
+			ret++;
+		}
 	}
-	while (count_b_rot)
+	else
 	{
-		rrb(b, 0);
-		write(1, "rrb\n", 4);
-		count_b_rot--;
-		ret++;
-	}
-	while (best[1])
-	{
-		rra(a, 0);
-		write(1, "rra\n", 4);
-		best[1]--;
-		ret++;
+		while (best[0])
+		{
+			ra(a, 0);
+			write(1, "ra\n", 3);
+			best[0]--;
+			ret++;
+		}
+		while (best[2])
+		{
+			rrb(b, 0);
+			write(1, "rb\n", 3);
+			best[2]++;
+			ret++;
+		}
 	}
 	pa(a, b, 0);
 	write(1, "pa\n", 3);

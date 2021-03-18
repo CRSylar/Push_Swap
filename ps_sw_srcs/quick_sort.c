@@ -6,28 +6,52 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/17 18:45:31 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:55:10 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void	find_limit(int index_limit[], t_stack *a)
+{
+	index_limit[0] = 1000000;
+	index_limit[1] = -1000000;
+	while (a)
+	{
+		if (a->index < index_limit[0])
+			index_limit[0] = a->index;
+		if (a->index > index_limit[1])
+			index_limit[1] = a->index;
+		a = a->next;
+	}
+	printf("limits [%d]/[%d]\n", index_limit[0], index_limit[1]);
+	sleep(2);
+}
+
+int		calc_best(int top[], int bottom[])
+{
+	int top_diff;
+	int	btt_diff;
+
+	top_diff = top[0] - top[2];
+	btt_diff = bottom[0] - bottom[2];
+
+	if (ABS(top_diff) < ABS(btt_diff))
+		return (1);
+	return (-1);
+}
+
 int		do_best_insertion(t_stack **a, t_stack **b, int top[], int bottom[])
 {
 	int ope;
+	int	best;
 
 	ope = 0;
- 	printf("top[%d]-[%d]-[%d]\n bottom[%d]-[%d]-[%d]", top[0], top[1], top[2], bottom[0], bottom[1], bottom[2]);
-	print_stack(*a, 1);
-	print_stack(*b, 2);
-	if (top[1] < bottom[1])
+	best = calc_best(top, bottom);
+	if (best > 0)
 		ope += r_loop(a, b, top);
 	else
 		ope += rr_loop(a, b, bottom);
-	/* if ((*a)->index > (*a)->next->index)
-	{	sa(a, 0);
-		write(1, "sa\n", 3);} */
-	sleep(5);
 	return (ope);
 }
 
@@ -35,63 +59,93 @@ int		find_best_insertion(t_stack **a, t_stack **b)
 {
 	t_stack	*a_end;
 	t_stack	*b_tmp;
-	t_stack *a_tmp;
-	int		a_sz;
+	t_stack	*a_tmp;
+	t_stack	*a_vend;
 	int		i;
-	int		count;
-	int		best[3];
+	int		index_limit[2];
+	int		best_top[4];
+	int		best_down[4];
 
-	i = 0;
 	built_position(a, b);
-	count = 0;
-	a_end = *a;
+	find_limit(index_limit, *a);
+	best_top[0] = 0;
+	best_down[0] = 0;
+	a_vend = *a;
 	b_tmp = *b;
 	a_tmp = *a;
-	a_sz = ft_stack_size(a_tmp);
-	while (a_end->next)
-		a_end = a_end->next;
-		while ((b_tmp->index > a_tmp->index) && (b_tmp->index < a_end->index))
-		{
-		if (b_tmp->index < a_end->index)
-			a_end = a_end->prev;
-		if (b_tmp->index > a_tmp->index)
-			a_tmp = a_tmp->next;
-	}
-	if (!(b_tmp->index > a_tmp->index))
-		count = a_tmp->prev->pos;
-	else if (!(b_tmp->index < a_end->index))
-		count = a_tmp->next->pos;
-	if (count > (a_sz / 2))
-		count = a_sz - count;
+	while (a_vend->next)
+		a_vend = a_vend->next;
 	while (b_tmp)
 	{
-
-		/* a_tmp = *a;
-		count = 0;
-		while (a_tmp)
+		i = 0;
+		a_tmp = *a;
+		a_end = a_vend;
+		best_top[3] = 0;
+		while ((b_tmp->index > index_limit[0]) && (b_tmp->index < index_limit[1]))
 		{
-			if ((ABS((a_tmp->index - b_tmp->index)) < best_top[0])
-				&& count > best_top[1])
-			{
-				best_top[0] = ABS((a_tmp->index - b_tmp->index));
-				best_top[1] = a_sz - count;
-				best_top[2] = b_tmp->index;
-			}
-			if ((ABS((a_tmp->index - b_end->index)) <= best_bottom[0])
-				&& (a_sz - count)  < best_bottom[1])
-			{
-				best_bottom[0] = ABS((a_tmp->index - b_end->index));
-				best_bottom[1] = a_sz - count;
-				best_bottom[2] = b_end->index;
-			}
-			a_tmp = a_tmp->next;
-			count++;
+			if (b_tmp->index < a_end->index)
+				a_end = a_end->prev;
+			if (b_tmp->index > a_tmp->index)
+				a_tmp = a_tmp->next;
+			i++;
+		}
+		if (!i && ((best_top[0] = 0)))
+			break ;
+		if (!(b_tmp->index > a_tmp->index))
+			best_top[0] = a_tmp->pos;
+		else if (!(b_tmp->index < a_end->index))
+		{
+			best_top[0] = a_tmp->next->pos;
+			best_top[3] = 1;
 		}
 		b_tmp = b_tmp->next;
-		b_end = b_end->prev;
-		i++; */
+		if (b_tmp && (b_tmp->pos >= best_top[0]))
+		{
+			best_top[1] = b_tmp->prev->index;
+			best_top[2] = b_tmp->prev->pos;
+			break ;
+		}
 	}
-	//return (do_best_insertion(a, b, best));
+	b_tmp = *b;
+	while (b_tmp->next)
+		b_tmp = b_tmp->next;
+	while (b_tmp)
+	{
+		i = 0;
+		a_tmp = *a;
+		a_end = a_vend;
+		best_down[3] = 0;
+		while ((b_tmp->index > index_limit[0]) && (b_tmp->index < index_limit[1]))
+		{
+			if (b_tmp->index < a_end->index)
+				a_end = a_end->prev;
+			if (b_tmp->index > a_tmp->index)
+				a_tmp = a_tmp->next;
+			i++;
+		}
+		if (!i && ((best_down[0] = 0)))
+			break ;
+		if (!(b_tmp->index > a_tmp->index))
+			best_down[0] = a_tmp->pos;
+		else if (!(b_tmp->index < a_end->index))
+		{
+			best_down[0] = a_tmp->next->pos;
+			best_down[3] = 1;
+		}
+		b_tmp = b_tmp->prev;
+		if (b_tmp && ((ft_stack_size(*b) - b_tmp->pos) >= best_down[0]))
+		{
+			best_down[1] = b_tmp->next->index;
+			best_down[2] = b_tmp->next->pos - ft_stack_size(*b);
+			break ;
+		}
+	}
+	(best_top[3]) ? best_top[0] = -best_top[0] + 1 : 0;
+	(best_down[3]) ? best_down[0] = -best_down[0] + 1 : 0;
+/* 	printf("best_top[%d] - best_down{%d}\n", best_top[0], best_down[0]);
+	printf("best_top-idx[%d] - best_down-idx{%d}\n", best_top[1], best_down[1]);
+	printf("best_top-b-pos[%d] - best_down-b-pos{%d}\n", best_top[2], best_down[2]); */
+	return (do_best_insertion(a, b, best_top, best_down));
 }
 
 int		init_solv(t_stack *a, int *seq, int seq_sz)

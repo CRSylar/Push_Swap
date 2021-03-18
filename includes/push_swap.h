@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/17 15:37:47 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:45:08 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			solve_quick_sort(t_stack *a);
 int			ra_loop(t_stack **tmp, int count);
 int			rra_loop(t_stack **tmp, int	count);
 int			find_min(t_stack *a);
+int			ft_check_duplicates(t_stack **a);
 /*
 ** Quick Sort **
 */

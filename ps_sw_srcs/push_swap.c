@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/18 16:40:44 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:45:22 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,8 @@ int		check_input(char **av, t_stack **a)
 		ft_push_stack(a, out);
 		i++;
 	}
-	tmp = *a;
-	while (tmp->next)
-	{
-		tmp2 = tmp->next;
-		while (tmp2)
-		{
-			if (tmp->data == tmp2->data)
-				return (0);
-			tmp2 = tmp2->next;
-		}
-		tmp = tmp->next;
-	}
+	if (ft_check_duplicates(a))
+		return (0);
 	return (1);
 }
 

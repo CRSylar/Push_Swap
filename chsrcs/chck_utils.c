@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:15:22 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 17:51:47 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:42:10 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,18 @@ void	print_stack(t_stack *a, int stack)
 int		check_duplicates(t_stack **a)
 {
 	t_stack *tmp;
+	t_stack	*tmp2;
 
 	tmp = *a;
 	while (tmp->next)
 	{
-		if (tmp->data == tmp->next->data)
-			return (1);
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->data == tmp->next->data)
+				return (1);
+			tmp2 = tmp2->next;
+		}
 		tmp = tmp->next;
 	}
 	return (0);

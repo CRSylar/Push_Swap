@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 11:08:21 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:40:44 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		check_input(char **av, t_stack **a)
 	int			i;
 	int			out;
 	t_stack		*tmp;
+	t_stack		*tmp2;
 
 	i = 1;
 	while (av[i])
@@ -50,8 +51,13 @@ int		check_input(char **av, t_stack **a)
 	tmp = *a;
 	while (tmp->next)
 	{
-		if (tmp->data == tmp->next->data)
-			return (0);
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->data == tmp2->data)
+				return (0);
+			tmp2 = tmp2->next;
+		}
 		tmp = tmp->next;
 	}
 	return (1);

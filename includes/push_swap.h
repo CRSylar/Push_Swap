@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 13:49:24 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:51:13 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ int			rr_loop(t_stack **a, t_stack **b, int best[]);
 int			calc_rotation(t_stack **b, int best[]);
 void		find_max(int *i, int *tmp, int size);
 int			find_max_pos(int arr[], int size);
+int			find_min_pos(t_stack **a);
 
 int			same_loop(t_stack **a, t_stack **b, int best[]);
 int			diff_loop(t_stack **a, t_stack **b, int best[]);
+
+void		free_stack(t_stack **a);
 
 #endif

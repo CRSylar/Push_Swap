@@ -6,11 +6,21 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 11:13:52 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:30:22 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static t_stack	*ft_new_stack(int data)
+{
+	t_stack		*ret;
+
+	ret = (t_stack*)malloc(sizeof(t_stack));
+	ret->data = data;
+	ret->next = 0;
+	return (ret);
+}
 
 t_stack		*t_copy_stack(t_stack **a)
 {
@@ -49,28 +59,19 @@ int		ft_check_duplicates(t_stack **a)
 
 void	ft_push_stack(t_stack **a, int out)
 {
-	t_stack *new;
+	t_stack *elem;
 	t_stack *tmp;
-	int		i;
 
-	i = 0;
-	new = malloc(sizeof(t_stack));
-	new->data = out;
-	new->next = 0;
-	new->prev = 0;
-	if (!*a)
+	elem = ft_new_stack(out);
+	if (!(*a) || !a)
+		*a = elem;
+	else
 	{
-		*a = new;
-		return ;
+		tmp = *a;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = elem;
 	}
-	tmp = *a;
-	while (tmp->next)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	tmp->next = new;
-	new->prev = tmp;
 }
 
 int		ft_stack_size(t_stack *stack)
@@ -100,23 +101,6 @@ int		stack_ordered(t_stack **a)
 		tmp = tmp->next;
 	}
 	return (1);
-}
-
-void	print_stack(t_stack *a, int stack)
-{
-	t_stack *tmp;
-
-	tmp = a;
-	while (tmp)
-	{
-		if (stack == 1)
-			printf(GRN"A ->[%d]-idx-[%d]-pos-[%d]"NC"\n",
-			tmp->data, tmp->index, tmp->pos);
-		else
-			printf(YLL"B ->[%d]-idx-[%d]-pos-[%d]"NC"\n",
-			tmp->data, tmp->index, tmp->pos);
-		tmp = tmp->next;
-	}
 }
 
 void	free_list(t_stack *a)

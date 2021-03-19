@@ -6,11 +6,39 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 13:59:15 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:55:34 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		align_stack_end(t_stack **a, int a_sz)
+{
+	int min;
+	int ope;
+	int i;
+
+	ope = 0;
+	i = 0;
+	min = find_min_pos(a);
+	if (min > a_sz / 2)
+		while (i < (a_sz - min))
+		{
+			rra(a, 0);
+			write(1, "rra\n", 4);
+			ope++;
+			i++;
+		}
+	else
+		while (i < min)
+		{
+			ra(a, 0);
+			write(1, "ra\n", 3);
+			ope++;
+			i++;
+		}
+	return (ope);
+}
 
 int		do_rotation(t_stack **a, t_stack **b, int op_a, int op_b)
 {
@@ -23,7 +51,6 @@ int		do_rotation(t_stack **a, t_stack **b, int op_a, int op_b)
 		ope = same_loop(a, b, best);
 	else
 		ope = diff_loop(a, b, best);
-	//printf("A %d - B %d op-a %d | op-b %d\n", (*a)->index, (*b)->index, op_a, op_b);
 	return (ope);
 }
 
@@ -47,13 +74,21 @@ int		insertion(t_stack **a, t_stack **b, int b_sz, int x)
 	a_sz = ft_stack_size(*a);
 	arr_a = copy_stack_index(*a, ft_stack_size(*a));
 	arr_b = copy_stack_index(*b, b_sz);
-	while (i < b_sz)
+	while (i < a_sz)
 	{
 		if (arr_b[x] < arr_a[i] && arr_b[x] > arr_a[(i == 0) ? 0 : i - 1])
+		{
+			free(arr_a);
+			free(arr_b);
 			return (i);
+		}
 		if (arr_b[x] > arr_a[(a_sz - i) % a_sz] &&
 			arr_b[x] < arr_a[((a_sz - i) + 1) % a_sz])
+		{
+			free(arr_a);
+			free(arr_b);
 			return (-i + 1);
+		}
 		i++;
 	}
 	max = find_max_pos(arr_a, a_sz) + 1;
@@ -110,7 +145,7 @@ int		init_solv(t_stack *a, int *seq, int seq_sz)
 	b = 0;
 	ope = 0;
 	tmp = a;
-	count = seq_sz;
+	count = seq_sz + 1;
 	while (tmp && count)
 	{
 		if (!is_in_sequence(tmp->data, seq, seq_sz) && ++ope)
@@ -128,12 +163,8 @@ int		init_solv(t_stack *a, int *seq, int seq_sz)
 	}
 	free(seq);
 	while (b)
-	{
 		ope += find_best_insertion(&tmp, &b);
-		print_stack(tmp, 1);
-		print_stack(b, 2);
-		sleep(2);
-	}
+	align_stack_end(&tmp, ft_stack_size(tmp));
 	return (ope);
 }
 

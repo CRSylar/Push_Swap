@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/17 15:38:05 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/18 17:01:25 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ PSS		=	ps_sw_srcs/push_swap.c \
 INSTR	=	instruction/pa_pb.c \
 			instruction/ra_rb.c \
 			instruction/rra_rrb.c \
-			instruction/sa_sb.c
+			instruction/sa_sb.c \
+			instruction/common_utils.c
 
 O_IN	=	$(INSTR:.c=.o)
 O_CK	=	$(CKR:.c=.o)
@@ -57,6 +58,7 @@ $(LIB):
 common:
 	@$(CC) $(CFLAG) -c $(H_INS) $(INSTR)
 	@mv *a_*.o instruction/
+	@mv common_utils* instruction/
 
 $(CKNAME):
 	@$(CC) -c $(CFLAG) $(INCCK) $(CKR)

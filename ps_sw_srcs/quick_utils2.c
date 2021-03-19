@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:03:29 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/18 11:13:11 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:44:43 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,88 +14,84 @@
 
 int		r_loop(t_stack **a, t_stack **b, int best[])
 {
-	int	ret;
+	int ret;
 
 	ret = 0;
-	if ((best[0] * best[2]) > 0)
+	while (best[0] && best[1])
 	{
-		while (best[0] && best[2])
-		{
-			rr(a, b, 0);
-			write(1, "rr\n", 3);
-			best[0]--;
-			best[2]--;
-			ret++;
-		}
-		while (best[0])
-		{
-			ra(a, 0);
-			write(1, "ra\n", 3);
-			best[0]--;
-			ret++;
-		}
-		while (best[2])
-		{
-			rb(b, 0);
-			write(1, "rb\n", 3);
-			best[2]--;
-			ret++;
-		}
+		rr(a, b, 0);
+		write(1, "rr\n", 3);
+		best[0]--;
+		best[1]--;
+		ret++;
 	}
+	while (best[0])
+	{
+		ra(a, 0);
+		write(1, "ra\n", 3);
+		best[0]--;
+		ret++;
+	}
+	while (best[1])
+	{
+		rb(b, 0);
+		write(1, "rb\n", 3);
+		best[1]--;
+		ret++;
+	}
+	return (ret);
+}
+
+int		rr_loop(t_stack **a, t_stack **b, int best[])
+{
+	int ret;
+
+	ret = 0;
+	while (best[0] && best[1])
+	{
+		rrr(a, b, 0);
+		write(1, "rrr\n", 4);
+		best[0]++;
+		best[1]++;
+		ret++;
+	}
+	while (best[0])
+	{
+		rra(a, 0);
+		write(1, "rra\n", 4);
+		best[0]++;
+		ret++;
+	}
+	while (best[1])
+	{
+		rrb(b, 0);
+		write(1, "rrb\n", 4);
+		best[1]++;
+		ret++;
+	}
+	return (ret);
+}
+
+int		same_loop(t_stack **a, t_stack **b, int best[])
+{
+	int	ret;
+
+	if (best[0] > 0)
+		ret = (r_loop(a, b, best));
 	else
-	{
-		while (best[0])
-		{
-			rra(a, 0);
-			write(1, "rra\n", 4);
-			(best[0] < 0) ? best[0]++ : best[0]--;
-			ret++;
-		}
-		while (best[2])
-		{
-			rb(b, 0);
-			write(1, "rb\n", 3);
-			best[2]--;
-			ret++;
-		}
-	}
+		ret = (rr_loop(a, b, best));
 	pa(a, b, 0);
 	write(1, "pa\n", 3);
 	ret++;
 	return (ret);
 }
 
-int		rr_loop(t_stack **a, t_stack **b, int best[])
+int		diff_loop(t_stack **a, t_stack **b, int best[])
 {
 	int	ret;
 
 	ret = 0;
-	if ((best[0] * best[2]) > 0)
-	{
-		while (best[0] && best[2])
-		{
-			rrr(a, b, 0);
-			write(1, "rrr\n", 4);
-			best[0]++;
-			best[2]++;
-			ret++;
-		}
-		while (best[0])
-		{
-			rra(a, 0);
-			write(1, "rra\n", 4);
-			best[0]++;
-			ret++;
-		}
-		while (best[2])
-		{
-			rrb(b, 0);
-			write(1, "rrb\n", 4);
-			best[2]++;
-			ret++;
-		}
-	}
-	else
+	if (best[0] >= 0 && best[1] <= 0)
 	{
 		while (best[0])
 		{
@@ -104,11 +100,28 @@ int		rr_loop(t_stack **a, t_stack **b, int best[])
 			best[0]--;
 			ret++;
 		}
-		while (best[2])
+		while (best[1])
 		{
 			rrb(b, 0);
+			write(1, "rrb\n", 4);
+			best[1]++;
+			ret++;
+		}
+	}
+	else if (best[0] <= 0 && best[1] >= 0)
+	{
+		while (best[0])
+		{
+			rra(a, 0);
+			write(1, "rra\n", 4);
+			best[0]++;
+			ret++;
+		}
+		while (best[1])
+		{
+			rb(b, 0);
 			write(1, "rb\n", 3);
-			best[2]++;
+			best[1]--;
 			ret++;
 		}
 	}
@@ -156,25 +169,3 @@ int		is_in_sequence(int data, int *seq, int seq_sz)
 	return (0);
 }
 
-void	built_position(t_stack **a, t_stack **b)
-{
-	int			i;
-	t_stack		*tmp;
-
-	tmp = *a;
-	i = 0;
-	while (tmp)
-	{
-		tmp->pos = i;
-		i++;
-		tmp = tmp->next;
-	}
-	tmp = *b;
-	i = 0;
-	while (tmp)
-	{
-		tmp->pos = i;
-		i++;
-		tmp = tmp->next;
-	}
-}

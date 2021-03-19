@@ -6,22 +6,24 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:57:09 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 10:55:12 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:22:52 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack		*stack_copy(t_stack **a)
+int		*copy_stack_index(t_stack *a, int size)
 {
-	t_stack *ret;
-	t_stack	*tmp;
+	t_stack *tmp;
+	int		*ret;
+	int		i;
 
-	tmp = *a;
-	ret = 0;
+	i = 0;
+	tmp = a;
+	ret = malloc(size * sizeof(int));
 	while (tmp)
 	{
-		ft_push_stack(&ret, tmp->data);
+		ret[i++] = tmp->index;
 		tmp = tmp->next;
 	}
 	return (ret);
@@ -60,20 +62,6 @@ void	create_index(int *sorted, t_stack **a, int size)
 			i++;
 		}
 		tmp = tmp->next;
-	}
-}
-
-void	find_max(int *i, int *tmp, int size)
-{
-	int j;
-
-	j = 0;
-	*i = tmp[j];
-	while (j < size)
-	{
-		if ((*i) < tmp[j])
-			*i = tmp[j];
-		j++;
 	}
 }
 

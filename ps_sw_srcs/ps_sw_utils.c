@@ -6,11 +6,26 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/18 16:45:15 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:13:52 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+t_stack		*t_copy_stack(t_stack **a)
+{
+	t_stack *ret;
+	t_stack	*tmp;
+
+	tmp = *a;
+	ret = 0;
+	while (tmp)
+	{
+		ft_push_stack(&ret, tmp->data);
+		tmp = tmp->next;
+	}
+	return (ret);
+}
 
 int		ft_check_duplicates(t_stack **a)
 {
@@ -23,7 +38,7 @@ int		ft_check_duplicates(t_stack **a)
 		tmp2 = tmp->next;
 		while (tmp2)
 		{
-			if (tmp->data == tmp->next->data)
+			if (tmp->data == tmp2->data)
 				return (1);
 			tmp2 = tmp2->next;
 		}

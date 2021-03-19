@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/18 16:45:22 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:23:39 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	find_best_solution(t_stack **a)
 /*
 **	runna gli algoritmi, poi vedi quello che ha usato meno istruzioni **
 */
-	cpy = stack_copy(a);
+	cpy = t_copy_stack(a);
 //	size_ins = solve_insertion_sort(&cpy);
-	cpy = stack_copy(a);
+	cpy = t_copy_stack(a);
 	size_qk = solve_quick_sort(cpy);
 }
 
@@ -36,16 +36,22 @@ int		check_input(char **av, t_stack **a)
 {
 	int			i;
 	int			out;
-	t_stack		*tmp;
-	t_stack		*tmp2;
 
 	i = 1;
 	while (av[i])
 	{
-		out = ft_atoi(av[i]);
-		if (errno == 1)
-			return (0);
-		ft_push_stack(a, out);
+		if (is_string(av[i]))
+			string_handle(av[i], a);
+		else
+		{
+			out = ft_atoi(av[i]);
+			if (errno == 1)
+			{
+				write(2, "Error - invalid parameter\n", 26);
+				exit(1);
+			}
+			ft_push_stack(a, out);
+		}
 		i++;
 	}
 	if (ft_check_duplicates(a))

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:55:35 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/16 17:48:55 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:59:01 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define INSTRUCTION_H
 
 # include <unistd.h>
+# include "../libft/libft.h"
 
 # define DEBUG	0x00000001
 # define COLOR	0x00000010
@@ -38,5 +39,7 @@ void				rr(t_stack **a, t_stack **b, char flag);
 void				rra(t_stack **a, char flag);
 void				rrb(t_stack **b, char flag);
 void				rrr(t_stack **a, t_stack **b, char flag);
+void				string_handle(char *str, t_stack **a);
+int					is_string(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/18 16:45:08 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/19 13:49:24 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			ft_stack_size(t_stack *stack);
 int			stack_ordered(t_stack **a);
 void		print_stack(t_stack *a, int stack);
 void		free_list(t_stack *a);
+t_stack		*t_copy_stack(t_stack **a);
 
 int			solve_insertion_sort(t_stack **a);
 int			solve_quick_sort(t_stack *a);
@@ -48,22 +49,22 @@ int			ft_check_duplicates(t_stack **a);
 /*
 ** Quick Sort **
 */
-t_stack		*stack_copy(t_stack **a);
 int			*copy_stack(t_stack *a, int size);
-void		create_index(int *sorted, t_stack **a, int size);
-void		find_max(int *i, int *tmp, int size);
-void		save_seq(int *sorted, int i, int *tmp, int size);
-void		sort_array(int *array, int size);
-
-void		built_position(t_stack **a, t_stack **b);
+int			*copy_stack_index(t_stack *a, int size);
 int			is_in_sequence(int data, int *seq, int seq_sz);
 int			build_seq(t_stack *a, int *a_cpy, int size);
+void		create_index(int *sorted, t_stack **a, int size);
+void		sort_array(int *array, int size);
 int			find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size);
-int			*parse_b(t_stack **a, t_stack **b, int i);
 
 int			r_loop(t_stack **a, t_stack **b, int best[]);
 int			rr_loop(t_stack **a, t_stack **b, int best[]);
 
 int			calc_rotation(t_stack **b, int best[]);
+void		find_max(int *i, int *tmp, int size);
+int			find_max_pos(int arr[], int size);
+
+int			same_loop(t_stack **a, t_stack **b, int best[]);
+int			diff_loop(t_stack **a, t_stack **b, int best[]);
 
 #endif

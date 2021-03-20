@@ -6,35 +6,33 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:36:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 19:09:27 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:45:13 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int			ra_loop(t_stack **tmp, int count)
+int			ra_loop(t_stack **tmp, int count, char flag)
 {
 	int	i;
 
 	i = 0;
 	while (count--)
 	{
-		ra(tmp, 0);
-		write(1, "ra\n", 3);
+		ra(tmp, flag);
 		i++;
 	}
 	return (i);
 }
 
-int			rra_loop(t_stack **tmp, int count)
+int			rra_loop(t_stack **tmp, int count, char flag)
 {
 	int		i;
 
 	i = 0;
 	while (count--)
 	{
-		rra(tmp, 0);
-		write(1, "rra\n", 4);
+		rra(tmp, flag);
 		i++;
 	}
 	return (i);

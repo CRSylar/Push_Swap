@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:36:16 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/14 12:11:51 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:56:25 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define DEBUG	0x00000001
-# define COLOR	0x00000010
+# define DEBUG	0b00000001
+# define COLOR	0b00000010
 # define YLL	"\x1b[33m"
 # define GRN	"\x1b[32m"
 # define RED	"\x1b[31m"
@@ -35,5 +35,6 @@ int		check_flag(char *flag, char **input);
 
 void	execute_flag(char flag, t_stack *a, t_stack *b);
 void	clr_wr(char *str, int status);
+void	free_stack(t_stack **a);
 
 #endif

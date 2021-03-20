@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:36:36 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 17:51:01 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 09:53:45 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		find_max(int *i, int *tmp, int size)
 	}
 }
 
-int		find_max_pos(int arr[], int size)
+int			find_max_pos(int arr[], int size)
 {
 	int	ret;
 	int	pos;
@@ -60,11 +60,11 @@ int		find_max_pos(int arr[], int size)
 	return (pos);
 }
 
-int		find_min_pos(t_stack **a)
+int			find_min_pos(t_stack **a)
 {
-	int min;
-	int pos;
-	t_stack *tmp;
+	int		min;
+	int		pos;
+	t_stack	*tmp;
 
 	pos = 0;
 	min = 2147483647;
@@ -74,5 +74,19 @@ int		find_min_pos(t_stack **a)
 		pos++;
 		tmp = tmp->next;
 	}
-	return(pos);
+	return (pos);
+}
+
+int			is_in_sequence(int data, int *seq, int seq_sz)
+{
+	int i;
+
+	i = 0;
+	while (i < seq_sz)
+	{
+		if (data == seq[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }

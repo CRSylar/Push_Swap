@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 18:55:34 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:27:00 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,40 +135,38 @@ int		find_best_insertion(t_stack **a, t_stack **b)
 	return (do_rotation(a, b, op_a, op_b));
 }
 
-int		init_solv(t_stack *a, int *seq, int seq_sz)
+int		init_solv(t_stack **a, int *seq, int seq_sz)
 {
-	t_stack	*tmp;
 	t_stack	*b;
 	int		count;
 	int		ope;
 
 	b = 0;
 	ope = 0;
-	tmp = a;
 	count = seq_sz + 1;
-	while (tmp && count)
+	while (*a && count)
 	{
-		if (!is_in_sequence(tmp->data, seq, seq_sz) && ++ope)
+		if (!is_in_sequence((*a)->data, seq, seq_sz) && ++ope)
 		{
-			pb(&tmp, &b, 0);
+			pb(a, &b, 0);
 			write(1, "pb\n", 3);
 		}
 		else
 		{
 			ope++;
 			count--;
-			ra(&tmp, 0);
+			ra(a, 0);
 			write(1, "ra\n", 3);
 		}
 	}
 	free(seq);
 	while (b)
-		ope += find_best_insertion(&tmp, &b);
-	align_stack_end(&tmp, ft_stack_size(tmp));
+		ope += find_best_insertion(a, &b);
+	align_stack_end(a, ft_stack_size(*a));
 	return (ope);
 }
 
-int		find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size)
+int		find_seq_value(t_stack **a, int *a_cpy, int *tmp, int size)
 {
 	int		max_v;
 	int		m_v_cpy;
@@ -191,17 +189,18 @@ int		find_seq_value(t_stack *a, int *a_cpy, int *tmp, int size)
 	return (init_solv(a, seq_v, m_v_cpy));
 }
 
-int		solve_quick_sort(t_stack *a)
+int		solve_quick_sort(t_stack **a, int flag)
 {
 	int		size;
 	int		*sorted;
 	int		*a_cpy;
 
-	size = ft_stack_size(a);
-	sorted = copy_stack(a, size);
-	a_cpy = copy_stack(a, size);
+	(void)flag;
+	size = ft_stack_size(*a);
+	sorted = copy_stack(*a, size);
+	a_cpy = copy_stack(*a, size);
 	sort_array(sorted, size);
-	create_index(sorted, &a, size);
+	create_index(sorted, a, size);
 	free(sorted);
 	return (build_seq(a, a_cpy, size));
 }

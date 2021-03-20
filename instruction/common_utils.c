@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:48:20 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 17:19:46 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 09:44:25 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static	void	ft_push_stack(t_stack **a, int out)
 	tmp->next = new;
 }
 
-static void	free_split(char **str)
+static void		free_split(char **str)
 {
 	int i;
 
@@ -46,7 +46,7 @@ static void	free_split(char **str)
 	free(str);
 }
 
-int			is_string(char *str)
+int				is_string(char *str)
 {
 	int i;
 
@@ -60,13 +60,13 @@ int			is_string(char *str)
 	return (0);
 }
 
-void		string_handle(char *str, t_stack **a)
+void			string_handle(char *str, t_stack **a)
 {
 	char	**out;
 	int		i;
 	int		num;
 
-	i =0;
+	i = 0;
 	out = ft_split(str, ' ');
 	while (out[i])
 	{

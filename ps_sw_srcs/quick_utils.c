@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:57:09 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 11:22:52 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 09:47:19 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	create_index(int *sorted, t_stack **a, int size)
 		while (i < size)
 		{
 			if (tmp->data == sorted[i])
-			tmp->index = i;
+				tmp->index = i;
 			i++;
 		}
 		tmp = tmp->next;

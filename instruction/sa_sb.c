@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:06:30 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 17:18:41 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 09:59:27 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	sa(t_stack **a, char flag)
 	tmp = (*a)->index;
 	(*a)->index = (*a)->next->index;
 	(*a)->next->index = tmp;
+	(flag & BEST) ? write(1, "sa\n", 3) : 0;
 	(flag & DEBUG) ? write(1, "-*- SA -*-\n", 11) : 0;
 }
 
@@ -39,11 +40,13 @@ void	sb(t_stack **b, char flag)
 	tmp = (*b)->index;
 	(*b)->index = (*b)->next->index;
 	(*b)->next->index = tmp;
+	(flag & BEST) ? write(1, "sb\n", 3) : 0;
 	(flag & DEBUG) ? write(1, "-*- SB -*-\n", 11) : 0;
 }
 
 void	ss(t_stack **a, t_stack **b, char flag)
 {
+	(flag & BEST) ? write(1, "ss\n", 3) : 0;
 	(flag & DEBUG) ? write(1, "-*- SS -*-\n", 11) : 0;
 	sa(a, 0);
 	sb(b, 0);

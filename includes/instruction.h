@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:55:35 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 17:15:01 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:52:31 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-# define DEBUG	0x00000001
-# define COLOR	0x00000010
+# define DEBUG	0b00000001
+# define COLOR	0b00000010
+# define BEST	0b00000100
 
 typedef struct		s_stack
 {

@@ -1,71 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sw_utils.c                                      :+:      :+:    :+:   */
+/*   ps_sw_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:49:50 by cromalde         ###   ########.fr       */
+/*   Created: 2021/03/20 09:49:11 by cromalde          #+#    #+#             */
+/*   Updated: 2021/03/20 09:51:03 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_push_stack(t_stack **a, int out)
+t_stack		*ft_new_stack(int data)
 {
-	t_stack *elem;
-	t_stack *tmp;
+	t_stack		*ret;
 
-	elem = ft_new_stack(out);
-	if (!(*a) || !a)
-		*a = elem;
-	else
-	{
-		tmp = *a;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = elem;
-	}
+	ret = (t_stack*)malloc(sizeof(t_stack));
+	ret->data = data;
+	ret->next = 0;
+	return (ret);
 }
 
-int		ft_stack_size(t_stack *stack)
+t_stack		*t_copy_stack(t_stack **a)
 {
-	int		i;
-	t_stack *tmp;
+	t_stack *ret;
+	t_stack	*tmp;
 
-	i = 0;
-	tmp = stack;
+	tmp = *a;
+	ret = 0;
 	while (tmp)
 	{
-		i++;
+		ft_push_stack(&ret, tmp->data);
 		tmp = tmp->next;
 	}
-	return (i);
+	return (ret);
 }
 
-int		stack_ordered(t_stack **a)
+int			ft_check_duplicates(t_stack **a)
 {
 	t_stack *tmp;
+	t_stack	*tmp2;
 
 	tmp = *a;
 	while (tmp->next)
 	{
-		if (tmp->data > tmp->next->data)
-			return (0);
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->data == tmp2->data)
+				return (1);
+			tmp2 = tmp2->next;
+		}
 		tmp = tmp->next;
 	}
-	return (1);
-}
-
-void	free_list(t_stack *a)
-{
-	t_stack *tmp;
-
-	while (a)
-	{
-		tmp = a->next;
-		free(a);
-		a = tmp;
-	}
+	return (0);
 }

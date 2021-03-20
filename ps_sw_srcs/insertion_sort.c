@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 19:08:11 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:45:24 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static	int			solve_easy_2(t_stack **tmp)
+static	int			solve_easy_2(t_stack **tmp, char flag)
 {
 	int i;
 
@@ -22,26 +22,23 @@ static	int			solve_easy_2(t_stack **tmp)
 	{
 		if ((*tmp)->data < (*tmp)->next->next->data)
 		{
-			sa(tmp, 0);
-			write(1, "sa\n", 3);
+			sa(tmp, flag);
 			return (++i);
 		}
-		ra(tmp, 0);
-		write(1, "ra\n", 3);
+		ra(tmp, flag);
 		return (++i);
 	}
 	else if (((*tmp)->data < (*tmp)->next->data) &&
 		!stack_ordered(&((*tmp)->next)))
 	{
-		rra(tmp, 0);
-		sa(tmp, 0);
-		write(1, "rra\nsa\n", 7);
+		rra(tmp, flag);
+		sa(tmp, flag);
 		i += 2;
 	}
 	return (i);
 }
 
-static	int			solve_easy_1(t_stack **tmp)
+static	int			solve_easy_1(t_stack **tmp, char flag)
 {
 	int ret;
 
@@ -50,23 +47,21 @@ static	int			solve_easy_1(t_stack **tmp)
 	if ((((*tmp)->data > (*tmp)->next->data)) &&
 		((*tmp)->next->data > (*tmp)->next->next->data))
 	{
-		ra(tmp, 0);
-		sa(tmp, 0);
-		write(1, "ra\nsa\n", 6);
+		ra(tmp, flag);
+		sa(tmp, flag);
 		return (2);
 	}
 	else if ((*tmp)->data < (*tmp)->next->data &&
 		(*tmp)->data > (*tmp)->next->next->data)
 	{
-		rra(tmp, 0);
-		write(1, "rra\n", 4);
+		rra(tmp, flag);
 		return (1);
 	}
-	ret = solve_easy_2(tmp);
+	ret = solve_easy_2(tmp, flag);
 	return (ret);
 }
 
-static	int			clean_b(t_stack **tmp, t_stack **b)
+static	int			clean_b(t_stack **tmp, t_stack **b, char flag)
 {
 	int	size;
 	int	c;
@@ -75,8 +70,7 @@ static	int			clean_b(t_stack **tmp, t_stack **b)
 	size = ft_stack_size(*b);
 	while (size)
 	{
-		pa(tmp, b, 0);
-		write(1, "pa\n", 3);
+		pa(tmp, b, flag);
 		c++;
 		size--;
 	}
@@ -84,28 +78,26 @@ static	int			clean_b(t_stack **tmp, t_stack **b)
 	return (c);
 }
 
-int					solve_insertion_sort(t_stack **a)
+int					solve_insertion_sort(t_stack **a, char flag)
 {
 	int				size;
 	int				min;
-	t_stack			*tmp;
 	t_stack			*b;
 	int				c;
 
-	tmp = *a;
 	b = 0;
 	c = 0;
-	size = ft_stack_size(tmp);
+	size = ft_stack_size(*a);
 	while (size > 3 && ++c)
 	{
-		min = find_min(tmp);
-		c += (min < (size / 2)) ? ra_loop(&tmp, min) : rra_loop(&tmp, size - min);
-		if (stack_ordered(&tmp))
+		min = find_min(*a);
+		c += (min < (size / 2)) ? ra_loop(a, min, flag) :
+			rra_loop(a, size - min, flag);
+		if (stack_ordered(a))
 			break ;
-		pb(&tmp, &b, 0);
-		write(1, "pb\n", 3);
+		pb(a, &b, flag);
 		size--;
 	}
-	c += solve_easy_1(&tmp) + clean_b(&tmp, &b);
+	c += solve_easy_1(a, flag) + clean_b(a, &b, flag);
 	return (c);
 }

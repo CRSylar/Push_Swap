@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:03:29 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 12:44:43 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:27:20 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int		diff_loop(t_stack **a, t_stack **b, int best[])
 	return (ret);
 }
 
-int		build_seq(t_stack *a, int *a_cpy, int size)
+int		build_seq(t_stack **a, int *a_cpy, int size)
 {
 	int		tmp[size];
 	int		i;
@@ -154,18 +154,3 @@ int		build_seq(t_stack *a, int *a_cpy, int size)
 	}
 	return (find_seq_value(a, a_cpy, tmp, size));
 }
-
-int		is_in_sequence(int data, int *seq, int seq_sz)
-{
-	int i;
-
-	i = 0;
-	while (i < seq_sz)
-	{
-		if (data == seq[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-

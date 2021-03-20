@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/19 19:16:59 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 10:57:00 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 void	find_best_solution(t_stack **a)
 {
 	t_stack *cpy;
+	char	flag;
 	int		size_ins;
 //	int		size_qk;
 
+	flag = 0;
+	flag |= BEST;
 	if (stack_ordered(a))
 		return ;
-/*
-**	runna gli algoritmi, poi vedi quello che ha usato meno istruzioni **
-*/
 	cpy = t_copy_stack(a);
-	size_ins =  solve_insertion_sort(&cpy);
-	free_stack(&cpy);/*
-	cpy = t_copy_stack(a);
-	size_qk = solve_quick_sort(cpy);
-	free_stack(&cpy);*/
+	size_ins = solve_insertion_sort(&cpy, flag);
+	free_stack(&cpy);
+	/*cpy = t_copy_stack(a);
+	size_qk = solve_quick_sort(&cpy, 0);
+	free_stack(&cpy);
+	 cpy = t_copy_stack(a);
+	if (size_ins < size_qk)
+		solve_insertion_sort(&cpy, BEST);
+	else
+		solve_quick_sort(&cpy, BEST);
+	free_stack(&cpy); */
 }
 
 int		check_input(char **av, t_stack **a)
@@ -75,6 +81,5 @@ int		main(int ac, char **av)
 	}
 	find_best_solution(&a);
 	free_stack(&a);
-	//sleep(50000);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:36:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:45:13 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 18:44:40 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ int			find_min(t_stack *a)
 		i++;
 	}
 	return (index);
+}
+
+int		solve5(t_stack **a, t_stack **b, char flag)
+{
+	pb(a, b, flag);
+	pb(a, b, flag);
+	ss(a, b, flag);
+	ra(a, flag);
+	pa(a, b,  flag);
+	sa(a, flag);
+	pa(a, b, flag);
+	rra(a,flag);
+	return (8);
 }

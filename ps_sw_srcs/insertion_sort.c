@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:45:24 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:50:58 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static	int			solve_easy_2(t_stack **tmp, char flag)
+int				solve_easy_2(t_stack **tmp, char flag)
 {
 	int i;
 
@@ -38,7 +38,7 @@ static	int			solve_easy_2(t_stack **tmp, char flag)
 	return (i);
 }
 
-static	int			solve_easy_1(t_stack **tmp, char flag)
+int				solve_easy_1(t_stack **tmp, char flag)
 {
 	int ret;
 
@@ -78,6 +78,13 @@ static	int			clean_b(t_stack **tmp, t_stack **b, char flag)
 	return (c);
 }
 
+int					is_special(t_stack **a)
+{
+	return ((*a)->data == 4 && (*a)->next->data == 2 &&
+		(*a)->next->next->data == 3 && (*a)->next->next->next->data == 1 &&
+		(*a)->next->next->next->next->data == 5);
+}
+
 int					solve_insertion_sort(t_stack **a, char flag)
 {
 	int				size;
@@ -88,6 +95,8 @@ int					solve_insertion_sort(t_stack **a, char flag)
 	b = 0;
 	c = 0;
 	size = ft_stack_size(*a);
+	if (size == 5 && is_special(a))
+		return (solve5(a, &b, flag));
 	while (size > 3 && ++c)
 	{
 		min = find_min(*a);

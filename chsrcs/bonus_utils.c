@@ -6,18 +6,17 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 11:18:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 15:33:10 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 18:23:34 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
+#include <fcntl.h>
 
 void	execute_flag(char flag, t_stack *a, t_stack *b)
 {
-	char	buff[2];
-	int		r;
+	char	buff;
 
-	r = 0;
 	if (flag & DEBUG)
 	{
 		ft_putstr_fd(GRN, -1, 1);
@@ -26,9 +25,12 @@ void	execute_flag(char flag, t_stack *a, t_stack *b)
 		ft_putstr_fd(YLL, -1, 1);
 		ft_putendl_fd("\t-----------", 1);
 		ft_putstr_fd(NC, -1, 1);
-		while ((r == read(0, &buff, 1) || 1))
-			if (buff[0] == ' ')
+		while (1)
+		{
+			read(0, &buff, 1);
+			if (buff == 'c')
 				break ;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 12:10:59 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 12:32:53 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:27:29 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int				insertion(t_stack **a, t_stack **b, int b_sz, int x)
 	return (max);
 }
 
-static void		new_best(int op_a, int op_b, int tmp, int i)
+static void		new_best(int *op_a, int *op_b, int tmp, int i)
 {
-	op_a = tmp;
-	op_b = i;
+	*op_a = tmp;
+	*op_b = i;
 	return ;
 }
 
@@ -65,10 +65,10 @@ int				find_best_insertion(t_stack **a, t_stack **b)
 			break ;
 		tmp = insertion(a, b, b_sz, i);
 		if (count_ops(tmp, i) < count_ops(op_a, op_b))
-			new_best(op_a, op_b, tmp, i);
+			new_best(&op_a, &op_b, tmp, i);
 		tmp = insertion(a, b, b_sz, ((b_sz - i) % b_sz));
 		if (count_ops(tmp, i) < count_ops(op_a, op_b))
-			new_best(op_a, op_b, tmp, -i);
+			new_best(&op_a, &op_b, tmp, -i);
 		i++;
 	}
 	return (do_rotation(a, b, op_a, op_b));

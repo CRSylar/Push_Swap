@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:35:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 15:49:28 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 16:29:48 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	rra(t_stack **a, char flag)
 
 	if (!a || !*a || !(*a)->next)
 	{
-		ft_putendl_fd("\t-*- RRA -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, A have 1 element\n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRA -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ?
+		ft_putendl_fd("NO Operation done, A have 1 element\n", 1) : 0;
 		return ;
 	}
 	tmp = *a;
@@ -41,8 +42,9 @@ void	rrb(t_stack **b, char flag)
 
 	if (!b || !*b || !(*b)->next)
 	{
-		ft_putendl_fd("\t-*- RRB -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, B have 1 element\n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRB -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ?
+		ft_putendl_fd("NO Operation done, B have 1 element\n", 1) : 0;
 		return ;
 	}
 	tmp = *b;

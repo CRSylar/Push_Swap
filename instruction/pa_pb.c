@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:25:21 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 15:45:02 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 16:27:46 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	pa(t_stack **a, t_stack **b, char flag)
 
 	if (!*b)
 	{
-		ft_putendl_fd("\t-*- PA  -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, B is EMPTY\n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- PA  -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ? ft_putendl_fd("NO Operation done, B is EMPTY\n", 1) :
+		0;
 		return ;
 	}
 	tmp = *b;
@@ -36,8 +37,9 @@ void	pb(t_stack **a, t_stack **b, char flag)
 
 	if (!*a)
 	{
-		ft_putendl_fd("\t-*- PA  -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, B is EMPTY\n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- PA  -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ? ft_putendl_fd("NO Operation done, B is EMPTY\n", 1) :
+		0;
 		return ;
 	}
 	tmp = *a;

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:06:30 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 15:49:00 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 16:30:32 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	sa(t_stack **a, char flag)
 
 	if (!*a || !(*a)->next)
 	{
-		ft_putendl_fd("\t-*- SA  -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, A have 1 element\n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- SA  -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ?
+		ft_putendl_fd("NO Operation done, A have 1 element\n", 1) : 0;
 		return ;
 	}
 	tmp = (*a)->data;
@@ -38,8 +39,9 @@ void	sb(t_stack **b, char flag)
 
 	if (!*b || !(*b)->next)
 	{
-		ft_putendl_fd("\t-*- SB  -*-\n\t[A]\t[B]", 1);
-		ft_putendl_fd("NO Operation done, B have 1 element \n", 1);
+		(flag & DEBUG) ? ft_putendl_fd("\t-*- SB  -*-\n\t[A]\t[B]", 1) : 0;
+		(flag & DEBUG) ?
+		ft_putendl_fd("NO Operation done, B have 1 element \n", 1) : 0;
 		return ;
 	}
 	tmp = (*b)->data;

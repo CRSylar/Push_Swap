@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 12:00:10 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:45:30 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define NC		"\033[0m"
 # define BLINK	"\x1b[5m"
 
-void		ft_push_stack(t_stack **a, int out, char flag);
+t_stack		*t_copy_stack(t_stack **a, char flag);
 int			ft_stack_size(t_stack *stack);
 int			stack_ordered(t_stack **a);
-void		print_stack(t_stack *a, int stack);
+int			ft_check_duplicates(t_stack **a);
+void		ft_push_stack(t_stack **a, int out, char flag);
 void		free_list(t_stack *a);
-t_stack		*t_copy_stack(t_stack **a, char flag);
 
 int			solve_insertion_sort(t_stack **a, char flag);
 int			solve_quick_sort(t_stack **a);
@@ -47,31 +47,38 @@ int			solve_quick_sort(t_stack **a);
 int			ra_loop(t_stack **tmp, int count, char flag);
 int			rra_loop(t_stack **tmp, int	count, char flag);
 int			find_min(t_stack *a);
-int			ft_check_duplicates(t_stack **a);
 /*
-** Quick Sort **
+** Longest increasing sequece and Sort **
 */
-
 t_stack		*ft_new_stack(int data, char flag);
-int			*copy_stack(t_stack *a, int size);
-int			*copy_stack_index(t_stack *a, int size);
-int			is_in_sequence(int data, int *seq, int seq_sz);
-int			build_seq(t_stack **a, int *a_cpy, int size);
 void		create_index(int *sorted, t_stack **a, int size);
 void		sort_array(int *array, int size);
+int			*copy_stack(t_stack *a, int size);
+int			*copy_stack_index(t_stack *a, int size);
+int			build_seq(t_stack **a, int *a_cpy, int size);
 int			find_seq_value(t_stack **a, int *a_cpy, int *tmp, int size);
+int			is_in_sequence(int data, int *seq, int seq_sz);
 
-int			r_loop(t_stack **a, t_stack **b, int best[]);
-int			rr_loop(t_stack **a, t_stack **b, int best[]);
-
-int			calc_rotation(t_stack **b, int best[]);
 void		find_max(int *i, int *tmp, int size);
 int			find_max_pos(int arr[], int size);
 int			find_min_pos(t_stack **a);
 
+int			init_solv(t_stack **a, int *seq, int seq_sz);
+int			find_best_insertion(t_stack **a, t_stack **b);
+int			count_ops(int op_a, int op_b);
+int			insertion(t_stack **a, t_stack **b, int b_sz, int x);
+int			calc_rotation(t_stack **b, int best[]);
+int			do_rotation(t_stack **a, t_stack **b, int op_a, int op_b);
+
 int			same_loop(t_stack **a, t_stack **b, int best[]);
 int			diff_loop(t_stack **a, t_stack **b, int best[]);
 
+int			r_loop(t_stack **a, t_stack **b, int best[]);
+int			rr_loop(t_stack **a, t_stack **b, int best[]);
+
+int			align_stack_end(t_stack **a, int a_sz);
+
 void		free_stack(t_stack **a);
+int			ft_free_arr(int *a, int *b);
 
 #endif

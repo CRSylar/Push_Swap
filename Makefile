@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/20 09:50:43 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/20 12:15:19 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,13 @@ PSS		=	ps_sw_srcs/push_swap.c \
 			ps_sw_srcs/insertion_sort.c \
 			ps_sw_srcs/insertion_utils.c \
 			ps_sw_srcs/quick_sort.c \
+			ps_sw_srcs/find_max_seq.c \
+			ps_sw_srcs/push_not_seq.c \
+			ps_sw_srcs/best_move_loop.c \
+			ps_sw_srcs/exec_best_move.c \
+			ps_sw_srcs/r_rr_loop.c\
 			ps_sw_srcs/quick_utils.c \
-			ps_sw_srcs/quick_utils2.c \
-			ps_sw_srcs/quick_utils3.c
+			ps_sw_srcs/quick_utils2.c
 
 INSTR	=	instruction/pa_pb.c \
 			instruction/ra_rb.c \

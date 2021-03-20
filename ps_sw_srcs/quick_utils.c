@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:57:09 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:47:19 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:42:26 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,11 @@ void	sort_array(int *array, int size)
 			i = 0;
 		}
 	}
+}
+
+int		ft_free_arr(int *a, int *b)
+{
+	free(a);
+	free(b);
+	return (0);
 }

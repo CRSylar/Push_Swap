@@ -35,7 +35,7 @@ int				insertion(t_stack **a, t_stack **b, int b_sz, int x)
 	}
 	max = find_max_pos(arr_a, a_sz) + 1;
 //	(max == a_sz) ? max = 0 : 0;  da controllare, forse va messo max=(max==a_sz)? 0 : max;
-	(max > (a_sz - max)) ? max = -(a_sz - max) : 0;
+//	(max > (a_sz - max)) ? max = -(a_sz - max) : 0; come sopra
 	ft_free_arr(arr_a, arr_b);
 	return (max);
 }

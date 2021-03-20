@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:36:16 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:56:25 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 14:37:22 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define NC		"\033[0m"
 # define BLINK	"\x1b[5m"
 
-void	print_stack(t_stack *a, int stack);
+void	print_stack(t_stack *a, t_stack *b);
 int		find_command(char *instr, t_stack **a, t_stack **b, char flag);
 void	ft_push_stack(t_stack **a, int out);
 int		check_duplicates(t_stack **a);

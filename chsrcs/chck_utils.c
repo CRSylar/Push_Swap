@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:15:22 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:32:05 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 15:27:19 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,27 @@ int		find_command(char *instr, t_stack **a, t_stack **b, char flag)
 	return (0);
 }
 
-void	print_stack(t_stack *a, int stack)
+void	print_stack(t_stack *a, t_stack *b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
+	t_stack	*tmp2;
+	char	flag;
 
 	tmp = a;
-	while (tmp)
+	tmp2 = b;
+	flag = 0;
+	while (tmp || tmp2)
 	{
-		if (stack == 1)
-		{
-			ft_putstr_fd("A -> [", -1, 1);
-			ft_putnbr_fd(tmp->data, 1);
-			ft_putendl_fd("]", 1);
-		}
-		else
-		{
-			ft_putstr_fd("B -> [", -1, 1);
-			ft_putnbr_fd(tmp->data, 1);
-			ft_putendl_fd("]", 1);
-		}
-		tmp = tmp->next;
+		ft_putstr_fd(GRN, -1, 1);
+		ft_putstr_fd("\t", -1, 1);
+		(tmp) ? ft_putnbr_fd(tmp->data, 1) : 0;
+		(!flag) ? ft_putstr_fd(YLL, -1, 1) : ft_putstr_fd(RED, -1, 1);
+		flag++;
+		ft_putstr_fd("\t", -1, 1);
+		(tmp2) ? ft_putnbr_fd(tmp2->data, 1) : 0;
+		ft_putendl_fd(NC, 1);
+		(tmp) ? tmp = tmp->next : 0;
+		(tmp2) ? tmp2 = tmp2->next : 0;
 	}
 }
 
@@ -116,8 +117,6 @@ int		check_flag(char *flag, char **input)
 	{
 		if ((!ft_memcmp(input[i], "-g", 3)) && ++count)
 			cpy_flag |= DEBUG;
-		if ((!ft_memcmp(input[i], "-c", 3)) && ++count)
-			cpy_flag |= COLOR;
 		if (!cpy_flag)
 			return (0);
 		i++;

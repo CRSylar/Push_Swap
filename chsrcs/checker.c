@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:42:54 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:43:45 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 15:34:17 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	check_sol(t_list *instr, t_stack **a, char flag)
 	tmp = *a;
 	while (tmp->next)
 	{
-		if (!(tmp->data < tmp->next->data) && !b)
+		if (!(tmp->data < tmp->next->data))
 		{
-			(flag & COLOR) ? clr_wr("KO", 0) : write(1, "KO\n", 3);
+			(flag) ? clr_wr("KO", 0) : write(1, "KO\n", 3);
 			return ;
 		}
 		tmp = tmp->next;
 	}
-	(flag & COLOR) ? clr_wr("OK", 1) : write(1, "OK\n", 3);
+	(flag) ? clr_wr("OK", 1) : write(1, "OK\n", 3);
 	return ;
 }
 
@@ -83,10 +83,15 @@ int		check_input(char **av, t_stack **a, char *flag)
 	i += check_flag(flag, av);
 	while (av[i])
 	{
-		out = ft_atoi(av[i]);
-		if (errno == 1)
-			return (0);
-		ft_push_stack(a, out);
+		if (is_string(av[i]))
+			string_handle(av[i], a);
+		else
+		{
+			out = ft_atoi(av[i]);
+			if (errno == 1)
+				return (0);
+			ft_push_stack(a, out);
+		}
 		i++;
 	}
 	if (check_duplicates(a))

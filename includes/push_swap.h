@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:53:07 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:00:10 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@
 # define NC		"\033[0m"
 # define BLINK	"\x1b[5m"
 
-void		ft_push_stack(t_stack **a, int out);
+void		ft_push_stack(t_stack **a, int out, char flag);
 int			ft_stack_size(t_stack *stack);
 int			stack_ordered(t_stack **a);
 void		print_stack(t_stack *a, int stack);
 void		free_list(t_stack *a);
-t_stack		*t_copy_stack(t_stack **a);
+t_stack		*t_copy_stack(t_stack **a, char flag);
 
 int			solve_insertion_sort(t_stack **a, char flag);
-int			solve_quick_sort(t_stack **a, int flag);
+int			solve_quick_sort(t_stack **a);
 /*
 ** Instertion utils **
 */
-int			ra_loop(t_stack **tmp, int count,char flag);
+int			ra_loop(t_stack **tmp, int count, char flag);
 int			rra_loop(t_stack **tmp, int	count, char flag);
 int			find_min(t_stack *a);
 int			ft_check_duplicates(t_stack **a);
@@ -52,7 +52,7 @@ int			ft_check_duplicates(t_stack **a);
 ** Quick Sort **
 */
 
-t_stack		*ft_new_stack(int data);
+t_stack		*ft_new_stack(int data, char flag);
 int			*copy_stack(t_stack *a, int size);
 int			*copy_stack_index(t_stack *a, int size);
 int			is_in_sequence(int data, int *seq, int seq_sz);

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:35:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:58:31 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:52:25 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	rrb(t_stack **b, char flag)
 
 void	rrr(t_stack **a, t_stack **b, char flag)
 {
-	(flag & DEBUG) ? write(1, "rrr\n", 4) : 0;
+	(flag & BEST) ? write(1, "rrr\n", 4) : 0;
 	(flag & DEBUG) ? write(1, "-*- RRR -*-\n", 12) : 0;
 	rra(a, 0);
 	rrb(b, 0);

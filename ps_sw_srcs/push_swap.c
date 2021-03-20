@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:28:55 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:57:00 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:00:49 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ void	find_best_solution(t_stack **a)
 	t_stack *cpy;
 	char	flag;
 	int		size_ins;
-//	int		size_qk;
+	int		size_qk;
 
 	flag = 0;
 	flag |= BEST;
 	if (stack_ordered(a))
 		return ;
-	cpy = t_copy_stack(a);
-	size_ins = solve_insertion_sort(&cpy, flag);
+	cpy = t_copy_stack(a, 0);
+	size_ins = solve_insertion_sort(&cpy, 0);
 	free_stack(&cpy);
-	/*cpy = t_copy_stack(a);
-	size_qk = solve_quick_sort(&cpy, 0);
+	cpy = t_copy_stack(a, 0);
+	size_qk = solve_quick_sort(&cpy);
 	free_stack(&cpy);
-	 cpy = t_copy_stack(a);
+	cpy = t_copy_stack(a, flag);
 	if (size_ins < size_qk)
 		solve_insertion_sort(&cpy, BEST);
 	else
-		solve_quick_sort(&cpy, BEST);
-	free_stack(&cpy); */
+		solve_quick_sort(&cpy);
+	free_stack(&cpy);
 }
 
 int		check_input(char **av, t_stack **a)
@@ -55,7 +55,7 @@ int		check_input(char **av, t_stack **a)
 				write(2, "Error - invalid parameter\n", 26);
 				exit(1);
 			}
-			ft_push_stack(a, out);
+			ft_push_stack(a, out, 0);
 		}
 		i++;
 	}

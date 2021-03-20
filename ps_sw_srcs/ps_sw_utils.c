@@ -6,18 +6,18 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:32:52 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:49:50 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:41:24 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_push_stack(t_stack **a, int out)
+void	ft_push_stack(t_stack **a, int out, char flag)
 {
 	t_stack *elem;
 	t_stack *tmp;
 
-	elem = ft_new_stack(out);
+	elem = ft_new_stack(out, flag);
 	if (!(*a) || !a)
 		*a = elem;
 	else

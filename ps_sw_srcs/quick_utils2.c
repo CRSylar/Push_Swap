@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 11:03:29 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:27:20 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:44:16 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,20 @@ int		r_loop(t_stack **a, t_stack **b, int best[])
 	ret = 0;
 	while (best[0] && best[1])
 	{
-		rr(a, b, 0);
-		write(1, "rr\n", 3);
+		rr(a, b, (*a)->flag);
 		best[0]--;
 		best[1]--;
 		ret++;
 	}
 	while (best[0])
 	{
-		ra(a, 0);
-		write(1, "ra\n", 3);
+		ra(a, (*a)->flag);
 		best[0]--;
 		ret++;
 	}
 	while (best[1])
 	{
-		rb(b, 0);
-		write(1, "rb\n", 3);
+		rb(b, (*a)->flag);
 		best[1]--;
 		ret++;
 	}
@@ -49,23 +46,20 @@ int		rr_loop(t_stack **a, t_stack **b, int best[])
 	ret = 0;
 	while (best[0] && best[1])
 	{
-		rrr(a, b, 0);
-		write(1, "rrr\n", 4);
+		rrr(a, b, (*a)->flag);
 		best[0]++;
 		best[1]++;
 		ret++;
 	}
 	while (best[0])
 	{
-		rra(a, 0);
-		write(1, "rra\n", 4);
+		rra(a, (*a)->flag);
 		best[0]++;
 		ret++;
 	}
 	while (best[1])
 	{
-		rrb(b, 0);
-		write(1, "rrb\n", 4);
+		rrb(b, (*a)->flag);
 		best[1]++;
 		ret++;
 	}
@@ -80,8 +74,7 @@ int		same_loop(t_stack **a, t_stack **b, int best[])
 		ret = (r_loop(a, b, best));
 	else
 		ret = (rr_loop(a, b, best));
-	pa(a, b, 0);
-	write(1, "pa\n", 3);
+	pa(a, b, (*a)->flag);
 	ret++;
 	return (ret);
 }
@@ -95,15 +88,13 @@ int		diff_loop(t_stack **a, t_stack **b, int best[])
 	{
 		while (best[0])
 		{
-			ra(a, 0);
-			write(1, "ra\n", 3);
+			ra(a, (*a)->flag);
 			best[0]--;
 			ret++;
 		}
 		while (best[1])
 		{
-			rrb(b, 0);
-			write(1, "rrb\n", 4);
+			rrb(b, (*a)->flag);
 			best[1]++;
 			ret++;
 		}
@@ -112,21 +103,18 @@ int		diff_loop(t_stack **a, t_stack **b, int best[])
 	{
 		while (best[0])
 		{
-			rra(a, 0);
-			write(1, "rra\n", 4);
+			rra(a, (*a)->flag);
 			best[0]++;
 			ret++;
 		}
 		while (best[1])
 		{
-			rb(b, 0);
-			write(1, "rb\n", 3);
+			rb(b, (*a)->flag);
 			best[1]--;
 			ret++;
 		}
 	}
-	pa(a, b, 0);
-	write(1, "pa\n", 3);
+	pa(a, b, (*a)->flag);
 	ret++;
 	return (ret);
 }

@@ -6,23 +6,24 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 09:49:11 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 09:51:03 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:36:48 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack		*ft_new_stack(int data)
+t_stack		*ft_new_stack(int data, char flag)
 {
 	t_stack		*ret;
 
 	ret = (t_stack*)malloc(sizeof(t_stack));
 	ret->data = data;
+	ret->flag = flag;
 	ret->next = 0;
 	return (ret);
 }
 
-t_stack		*t_copy_stack(t_stack **a)
+t_stack		*t_copy_stack(t_stack **a, char flag)
 {
 	t_stack *ret;
 	t_stack	*tmp;
@@ -31,7 +32,7 @@ t_stack		*t_copy_stack(t_stack **a)
 	ret = 0;
 	while (tmp)
 	{
-		ft_push_stack(&ret, tmp->data);
+		ft_push_stack(&ret, tmp->data, flag);
 		tmp = tmp->next;
 	}
 	return (ret);

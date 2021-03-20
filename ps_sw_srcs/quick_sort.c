@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:46:33 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 10:27:00 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:27:54 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,14 @@ int		align_stack_end(t_stack **a, int a_sz)
 	if (min > a_sz / 2)
 		while (i < (a_sz - min))
 		{
-			rra(a, 0);
-			write(1, "rra\n", 4);
+			rra(a, (*a)->flag);
 			ope++;
 			i++;
 		}
 	else
 		while (i < min)
 		{
-			ra(a, 0);
-			write(1, "ra\n", 3);
+			ra(a, (*a)->flag);
 			ope++;
 			i++;
 		}
@@ -147,16 +145,12 @@ int		init_solv(t_stack **a, int *seq, int seq_sz)
 	while (*a && count)
 	{
 		if (!is_in_sequence((*a)->data, seq, seq_sz) && ++ope)
-		{
-			pb(a, &b, 0);
-			write(1, "pb\n", 3);
-		}
+			pb(a, &b, (*a)->flag);
 		else
 		{
 			ope++;
 			count--;
-			ra(a, 0);
-			write(1, "ra\n", 3);
+			ra(a, (*a)->flag);
 		}
 	}
 	free(seq);
@@ -189,13 +183,12 @@ int		find_seq_value(t_stack **a, int *a_cpy, int *tmp, int size)
 	return (init_solv(a, seq_v, m_v_cpy));
 }
 
-int		solve_quick_sort(t_stack **a, int flag)
+int		solve_quick_sort(t_stack **a)
 {
 	int		size;
 	int		*sorted;
 	int		*a_cpy;
 
-	(void)flag;
 	size = ft_stack_size(*a);
 	sorted = copy_stack(*a, size);
 	a_cpy = copy_stack(*a, size);

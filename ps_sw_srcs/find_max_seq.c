@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 12:06:28 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 12:07:37 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:54:36 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ int		find_seq_value(t_stack **a, int *a_cpy, int *tmp, int size)
 	max_v = 0;
 	find_max(&max_v, tmp, size);
 	m_v_cpy = max_v;
-	seq_v = malloc(sizeof(int) * max_v);
-	while (size > 0)
+	seq_v = malloc(sizeof(int) * (max_v));
+	while (--size >= 0)
 	{
 		if (tmp[size] == max_v)
 		{
 			seq_v[max_v - 1] = a_cpy[size];
 			max_v--;
 		}
-		size--;
 	}
 	free(a_cpy);
 	return (init_solv(a, seq_v, m_v_cpy));

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 09:49:11 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 11:36:48 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:18:41 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack		*ft_new_stack(int data, char flag)
 	ret = (t_stack*)malloc(sizeof(t_stack));
 	ret->data = data;
 	ret->flag = flag;
+	ret->index = 0;
 	ret->next = 0;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:29:15 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 17:38:52 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 12:36:29 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			rra_loop(t_stack **tmp, int	count, char flag);
 int			solve_easy_1(t_stack **tmp, char flag);
 int			solve_easy_2(t_stack **tmp, char flag);
 int			solve5(t_stack **a, t_stack **b, char flag);
+int			solve5_2(t_stack **a, t_stack **b, char flag);
 int			find_min(t_stack *a);
 /*
 ** Longest increasing sequece and Sort **

@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:06:30 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 16:30:32 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 15:01:17 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/instruction.h"
 
-void	sa(t_stack **a, char flag)
+int		sa(t_stack **a, char flag)
 {
 	int	tmp;
 
@@ -21,7 +21,7 @@ void	sa(t_stack **a, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- SA  -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, A have 1 element\n", 1) : 0;
-		return ;
+		return (0);
 	}
 	tmp = (*a)->data;
 	(*a)->data = (*a)->next->data;
@@ -31,9 +31,10 @@ void	sa(t_stack **a, char flag)
 	(*a)->next->index = tmp;
 	(flag & BEST) ? write(1, "sa\n", 3) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- SA  -*-\n\t[A]\t[B]\n", 1) : 0;
+	return (1);
 }
 
-void	sb(t_stack **b, char flag)
+int		sb(t_stack **b, char flag)
 {
 	int	tmp;
 
@@ -42,7 +43,7 @@ void	sb(t_stack **b, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- SB  -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, B have 1 element \n", 1) : 0;
-		return ;
+		return (0);
 	}
 	tmp = (*b)->data;
 	(*b)->data = (*b)->next->data;
@@ -52,12 +53,12 @@ void	sb(t_stack **b, char flag)
 	(*b)->next->index = tmp;
 	(flag & BEST) ? write(1, "sb\n", 3) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- SB  -*-\n\t[A]\t[B]\n", 1) : 0;
+	return (1);
 }
 
-void	ss(t_stack **a, t_stack **b, char flag)
+int		ss(t_stack **a, t_stack **b, char flag)
 {
 	(flag & BEST) ? write(1, "ss\n", 3) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- SS  -*-\n\t[A]\t[B]\n", 1) : 0;
-	sa(a, 0);
-	sb(b, 0);
+	return (sa(a, 0) + sb(b, 0));
 }

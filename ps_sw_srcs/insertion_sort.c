@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 17:50:58 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 12:32:49 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,15 @@ static	int			clean_b(t_stack **tmp, t_stack **b, char flag)
 
 int					is_special(t_stack **a)
 {
-	return ((*a)->data == 4 && (*a)->next->data == 2 &&
+	if ((*a)->data == 4 && (*a)->next->data == 2 &&
 		(*a)->next->next->data == 3 && (*a)->next->next->next->data == 1 &&
-		(*a)->next->next->next->next->data == 5);
+		(*a)->next->next->next->next->data == 5)
+		return (1);
+	if ((*a)->data == 4 && (*a)->next->data == 2 &&
+		(*a)->next->next->data == 1 && (*a)->next->next->next->data == 3 &&
+		(*a)->next->next->next->next->data == 5)
+		return (2);
+	return (0);
 }
 
 int					solve_insertion_sort(t_stack **a, char flag)
@@ -95,8 +101,10 @@ int					solve_insertion_sort(t_stack **a, char flag)
 	b = 0;
 	c = 0;
 	size = ft_stack_size(*a);
-	if (size == 5 && is_special(a))
+	if (size == 5 && (is_special(a) == 1))
 		return (solve5(a, &b, flag));
+	if (size == 5 && (is_special(a) == 2))
+		return (solve5_2(a, &b, flag));
 	while (size > 3 && ++c)
 	{
 		min = find_min(*a);

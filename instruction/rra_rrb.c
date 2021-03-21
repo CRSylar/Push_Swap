@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:35:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 16:29:48 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 15:00:19 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/instruction.h"
 
-void	rra(t_stack **a, char flag)
+int		rra(t_stack **a, char flag)
 {
 	t_stack *tmp;
 	t_stack *ptr;
@@ -22,7 +22,7 @@ void	rra(t_stack **a, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRA -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, A have 1 element\n", 1) : 0;
-		return ;
+		return (0) ;
 	}
 	tmp = *a;
 	while (tmp->next->next)
@@ -33,9 +33,10 @@ void	rra(t_stack **a, char flag)
 	*a = ptr;
 	(flag & BEST) ? write(1, "rra\n", 4) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- RRA -*-\n\t[A]\t[B]\n", 1) : 0;
+	return (1);
 }
 
-void	rrb(t_stack **b, char flag)
+int		rrb(t_stack **b, char flag)
 {
 	t_stack *tmp;
 	t_stack *ptr;
@@ -45,7 +46,7 @@ void	rrb(t_stack **b, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRB -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, B have 1 element\n", 1) : 0;
-		return ;
+		return (0) ;
 	}
 	tmp = *b;
 	while (tmp->next->next)
@@ -56,12 +57,12 @@ void	rrb(t_stack **b, char flag)
 	*b = ptr;
 	(flag & BEST) ? write(1, "rrb\n", 4) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- RRB -*-\n\t[A]\t[B]\n", 1) : 0;
+	return (1);
 }
 
-void	rrr(t_stack **a, t_stack **b, char flag)
+int		rrr(t_stack **a, t_stack **b, char flag)
 {
 	(flag & BEST) ? write(1, "rrr\n", 4) : 0;
 	(flag & DEBUG) ? ft_putendl_fd("\t-*- RRR -*-\n\t[A]\t[B]\n", 1) : 0;
-	rra(a, 0);
-	rrb(b, 0);
+	return (rra(a, 0) + rrb(b, 0));
 }

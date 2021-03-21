@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 12:10:59 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 13:27:29 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 15:10:45 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int				insertion(t_stack **a, t_stack **b, int b_sz, int x)
 		i++;
 	}
 	max = find_max_pos(arr_a, a_sz) + 1;
-//	(max == a_sz) ? max = 0 : 0;  da controllare, forse va messo max=(max==a_sz)? 0 : max;
-//	(max > (a_sz - max)) ? max = -(a_sz - max) : 0; come sopra
+	max = (max == a_sz) ? 0 : max;
+	max = (max > (a_sz - max)) ? -(a_sz - max) : max;
 	ft_free_arr(arr_a, arr_b);
 	return (max);
 }

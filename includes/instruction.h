@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:55:35 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 11:22:22 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:57:59 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ typedef struct		s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-void				sa(t_stack **a, char flag);
-void				sb(t_stack **b, char flag);
-void				ss(t_stack **a, t_stack **b, char flag);
-void				pa(t_stack **a, t_stack **b, char flag);
-void				pb(t_stack **a, t_stack **b, char flag);
-void				ra(t_stack **a, char flag);
-void				rb(t_stack **b, char flag);
-void				rr(t_stack **a, t_stack **b, char flag);
-void				rra(t_stack **a, char flag);
-void				rrb(t_stack **b, char flag);
-void				rrr(t_stack **a, t_stack **b, char flag);
-void				string_handle(char *str, t_stack **a);
+int					sa(t_stack **a, char flag);
+int					sb(t_stack **b, char flag);
+int					ss(t_stack **a, t_stack **b, char flag);
+int					pa(t_stack **a, t_stack **b, char flag);
+int					pb(t_stack **a, t_stack **b, char flag);
+int					ra(t_stack **a, char flag);
+int					rb(t_stack **b, char flag);
+int					rr(t_stack **a, t_stack **b, char flag);
+int					rra(t_stack **a, char flag);
+int					rrb(t_stack **b, char flag);
+int					rrr(t_stack **a, t_stack **b, char flag);
 int					is_string(char *str);
+void				string_handle(char *str, t_stack **a);
 
 #endif

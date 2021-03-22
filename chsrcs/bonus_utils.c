@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 11:18:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 18:23:34 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:31:46 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	execute_flag(char flag, t_stack *a, t_stack *b)
 		while (1)
 		{
 			read(0, &buff, 1);
-			if (buff == 'c')
+			if (buff == 's')
 				break ;
 		}
 	}

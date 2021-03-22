@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/20 12:49:54 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/22 13:03:44 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ $(PSNAME):
 	@$(CC) -c $(CFLAG) $(INCPS) $(PSS)
 	@mv *.o ps_sw_srcs/
 	@$(CC) -o $(PSNAME) $(CFLAG) $(H_INS) $(INCPS) $(O_IN) $(O_PS) $(LIB)
+	@cp includes/.push_swap ./push_swap
 	@echo "\033[0;32mCreating        $(PSNAME)\033[0;0m"
 
 clean:

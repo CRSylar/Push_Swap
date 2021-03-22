@@ -6,12 +6,11 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 11:18:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/22 13:31:46 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:41:21 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
-#include <fcntl.h>
 
 void	execute_flag(char flag, t_stack *a, t_stack *b)
 {
@@ -28,7 +27,7 @@ void	execute_flag(char flag, t_stack *a, t_stack *b)
 		while (1)
 		{
 			read(0, &buff, 1);
-			if (buff == 's')
+			if (buff == 'n')
 				break ;
 		}
 	}

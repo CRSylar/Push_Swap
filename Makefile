@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/22 13:03:44 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/22 18:02:15 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 
 CKNAME	=	checker
 PSNAME	=	push_swap
+BON		=	b_checker
 LIB		=	libft/libft.a
 CKR		=	chsrcs/checker.c \
 			chsrcs/chck_utils.c \
@@ -39,6 +40,9 @@ INSTR	=	instruction/pa_pb.c \
 			instruction/sa_sb.c \
 			instruction/common_utils.c
 
+BONSRCS	=	visual/bonus_checker.c
+
+O_BN	=	$(BONSRCS:.c=.o)
 O_IN	=	$(INSTR:.c=.o)
 O_CK	=	$(CKR:.c=.o)
 O_PS	=	$(PSS:.c=.o)
@@ -51,11 +55,15 @@ INCPS	=	-I includes/push_swap.h
 
 CC		=	gcc
 CFLAG	=	-Wall -Wextra -Werror -g
+FFLAG	=	-lmlx -framework OpenGL -framework AppKit
 RM		=	rm -rf
 
 .PHONY:		all clean fclean re bonus common
 
+
 all:	$(LIB) common $(CKNAME) $(PSNAME)
+
+bonus: all	$(BON)
 
 $(LIB):
 	@make bonus -C ./libft
@@ -80,15 +88,24 @@ $(PSNAME):
 	@cp includes/.push_swap ./push_swap
 	@echo "\033[0;32mCreating        $(PSNAME)\033[0;0m"
 
+$(BON):
+	@$(CC) -c $(CFLAG) $(BONSRCS)
+	@mv *bonus*.o visual/
+	@make -C ./minilibx_mms_20200219
+	@cp ./minilibx_mms_20200219/libmlx.dylib ./
+	@$(CC) -o $(BON) $(CFLAG) $(FFLAG) $(O_IN) $(O_BN) $(LIB)
+	@echo "\033[0;32mCreating.........VISUAL MODE\033[0;0m"
+
 clean:
 	@make clean -C ./libft
+	@make clean -C ./minilibx_mms_20200219
 	@$(RM) $(O_CK) $(O_IN) $(O_PS)
 	@echo "\033[0;31mCleaning        folder objs\033[0;0m"
-
 
 fclean:	clean
 	@make fclean -C ./libft
 	@$(RM) $(CKNAME) $(PSNAME)
+	@rm -rf b_checker libmlx.dylib
 	@echo "\033[0;31mRemoving          binaries\033[0;0m"
 
 re: fclean all

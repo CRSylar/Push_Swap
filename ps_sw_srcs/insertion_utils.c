@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:36:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/21 12:35:56 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:35:04 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			find_min(t_stack *a)
 	return (index);
 }
 
-int		solve5_2(t_stack **a, t_stack **b, char flag)
+int			solve5_2(t_stack **a, t_stack **b, char flag)
 {
 	pb(a, b, flag);
 	rra(a, flag);
@@ -73,15 +73,15 @@ int		solve5_2(t_stack **a, t_stack **b, char flag)
 	return (8);
 }
 
-int		solve5(t_stack **a, t_stack **b, char flag)
+int			solve5(t_stack **a, t_stack **b, char flag)
 {
 	pb(a, b, flag);
 	pb(a, b, flag);
 	ss(a, b, flag);
 	ra(a, flag);
-	pa(a, b,  flag);
+	pa(a, b, flag);
 	sa(a, flag);
 	pa(a, b, flag);
-	rra(a,flag);
+	rra(a, flag);
 	return (8);
 }

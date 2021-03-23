@@ -5,3 +5,4 @@ checker
 push_swap
 *.a
 b_checker
+*.dylib

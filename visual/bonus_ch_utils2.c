@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 15:08:14 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/23 15:11:32 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:09:23 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,17 @@ int		read_inst(t_all *all)
 	}
 	free(line);
 	return (0);
+}
+
+void	print_loop(t_all *all, int max)
+{
+	all->img.img = mlx_new_image(all->mlx.mlx, 750, 900);
+	all->img.addr = mlx_get_data_addr(all->img.img, &all->img.bpp,
+							&all->img.line_lgt, &all->img.edn);
+	rend_stack(all->a, all, max, 'a');
+	if (all->b)
+		rend_stack(all->b, all, max, 'b');
+	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->img.img, 0, 0);
+	mlx_do_sync(all->mlx.mlx);
+	mlx_destroy_image(all->mlx.mlx, all->img.img);
 }

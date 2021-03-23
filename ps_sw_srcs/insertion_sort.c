@@ -6,13 +6,13 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:58:40 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/21 12:32:49 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:35:47 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				solve_easy_2(t_stack **tmp, char flag)
+int					solve_easy_2(t_stack **tmp, char flag)
 {
 	int i;
 
@@ -38,7 +38,7 @@ int				solve_easy_2(t_stack **tmp, char flag)
 	return (i);
 }
 
-int				solve_easy_1(t_stack **tmp, char flag)
+int					solve_easy_1(t_stack **tmp, char flag)
 {
 	int ret;
 

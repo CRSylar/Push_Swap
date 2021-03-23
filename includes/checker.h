@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:36:16 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/22 17:59:03 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:20:58 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define RED	"\x1b[31m"
 # define NC		"\033[0m"
 # define BLINK	"\x1b[5m"
+
+# define MAX(x,y) ((x > y) ? x : y)
+# define ABS(x) ((x > 0) ? x : -x)
 
 void	print_stack(t_stack *a, t_stack *b);
 int		find_command(char *instr, t_stack **a, t_stack **b, char flag);

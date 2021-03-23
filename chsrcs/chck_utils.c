@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:15:22 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/20 15:27:19 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:19:46 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ void	ft_push_stack(t_stack **a, int out)
 
 int		find_command(char *instr, t_stack **a, t_stack **b, char flag)
 {
-	if (!ft_memcmp(instr, "sa", ft_strlen(instr)))
+	if (!ft_memcmp(instr, "sa", MAX(ft_strlen(instr), 3)))
 		sa(a, flag);
-	else if (!ft_memcmp(instr, "sb", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "sb", MAX(ft_strlen(instr), 3)))
 		sb(b, flag);
-	else if (!ft_memcmp(instr, "ss", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "ss", MAX(ft_strlen(instr), 3)))
 		ss(a, b, flag);
-	else if (!ft_memcmp(instr, "pa", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "pa", MAX(ft_strlen(instr), 3)))
 		pa(a, b, flag);
-	else if (!ft_memcmp(instr, "pb", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "pb", MAX(ft_strlen(instr), 3)))
 		pb(a, b, flag);
-	else if (!ft_memcmp(instr, "ra", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "ra", MAX(ft_strlen(instr), 3)))
 		ra(a, flag);
-	else if (!ft_memcmp(instr, "rb", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "rb", MAX(ft_strlen(instr), 3)))
 		rb(b, flag);
-	else if (!ft_memcmp(instr, "rr", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "rr", MAX(ft_strlen(instr), 3)))
 		rr(a, b, flag);
-	else if (!ft_memcmp(instr, "rra", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "rra", MAX(ft_strlen(instr), 4)))
 		rra(a, flag);
-	else if (!ft_memcmp(instr, "rrb", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "rrb", MAX(ft_strlen(instr), 4)))
 		rrb(b, flag);
-	else if (!ft_memcmp(instr, "rrr", ft_strlen(instr)))
+	else if (!ft_memcmp(instr, "rrr", MAX(ft_strlen(instr), 4)))
 		rrr(a, b, flag);
 	else
 		return (-1);

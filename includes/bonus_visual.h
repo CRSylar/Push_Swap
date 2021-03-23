@@ -6,17 +6,20 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 15:41:24 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/22 17:58:54 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:32:59 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BONUS_VISUAL_H
 # define BONUS_VISUAL_H
 
+# include <limits.h>
 # include "instruction.h"
 # include "checker.h"
 # include "../minilibx_mms_20200219/mlx.h"
 
+# define MAX(x,y) ((x > y) ? x : y)
+# define ABS(x) ((x > 0) ? x : -x)
 typedef struct	s_win
 {
 	void	*img;

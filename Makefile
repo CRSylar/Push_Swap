@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/22 18:02:15 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/23 09:35:38 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ $(BON):
 	@mv *bonus*.o visual/
 	@make -C ./minilibx_mms_20200219
 	@cp ./minilibx_mms_20200219/libmlx.dylib ./
-	@$(CC) -o $(BON) $(CFLAG) $(FFLAG) $(O_IN) $(O_BN) $(LIB)
+	@$(CC) -o $(BON) $(CFLAG) $(FFLAG) $(O_IN) ./chsrcs/chck_utils.o $(O_BN) $(LIB)
 	@echo "\033[0;32mCreating.........VISUAL MODE\033[0;0m"
 
 clean:

@@ -6,7 +6,7 @@
 #    By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 17:51:38 by cromalde          #+#    #+#              #
-#    Updated: 2021/03/23 09:35:38 by cromalde         ###   ########.fr        #
+#    Updated: 2021/03/23 15:36:56 by cromalde         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ INSTR	=	instruction/pa_pb.c \
 			instruction/sa_sb.c \
 			instruction/common_utils.c
 
-BONSRCS	=	visual/bonus_checker.c
+BONSRCS	=	visual/bonus_checker.c \
+			visual/bonus_ch_utils.c \
+			visual/bonus_ch_utils2.c
 
 O_BN	=	$(BONSRCS:.c=.o)
 O_IN	=	$(INSTR:.c=.o)
@@ -73,24 +75,19 @@ common:
 	@mv *a_*.o instruction/
 	@mv common_utils* instruction/
 
-$(CKNAME):
-	@$(CC) -c $(CFLAG) $(INCCK) $(CKR)
-	@mv checker.o chsrcs/
-	@mv chck_utils.o chsrcs/
-	@mv bonus_utils.o chsrcs/
+%.o : %.c
+	@$(CC) -c $(CFLAG) $(INCCK) $^ -o $@
+
+$(CKNAME): $(O_CK)
 	@$(CC) -o $(CKNAME) $(CFLAG) $(H_INS) $(INCCK) $(O_IN) $(O_CK) $(LIB)
 	@echo "\033[0;32mCreating        $(CKNAME)\033[0;0m"
 
-$(PSNAME):
-	@$(CC) -c $(CFLAG) $(INCPS) $(PSS)
-	@mv *.o ps_sw_srcs/
+$(PSNAME): $(O_PS)
 	@$(CC) -o $(PSNAME) $(CFLAG) $(H_INS) $(INCPS) $(O_IN) $(O_PS) $(LIB)
 	@cp includes/.push_swap ./push_swap
 	@echo "\033[0;32mCreating        $(PSNAME)\033[0;0m"
 
-$(BON):
-	@$(CC) -c $(CFLAG) $(BONSRCS)
-	@mv *bonus*.o visual/
+$(BON): $(O_BN)
 	@make -C ./minilibx_mms_20200219
 	@cp ./minilibx_mms_20200219/libmlx.dylib ./
 	@$(CC) -o $(BON) $(CFLAG) $(FFLAG) $(O_IN) ./chsrcs/chck_utils.o $(O_BN) $(LIB)
@@ -99,12 +96,12 @@ $(BON):
 clean:
 	@make clean -C ./libft
 	@make clean -C ./minilibx_mms_20200219
-	@$(RM) $(O_CK) $(O_IN) $(O_PS)
+	@$(RM) $(O_CK) $(O_IN) $(O_PS) $(O_BN)
 	@echo "\033[0;31mCleaning        folder objs\033[0;0m"
 
 fclean:	clean
 	@make fclean -C ./libft
-	@$(RM) $(CKNAME) $(PSNAME)
+	@$(RM) $(CKNAME) $(PSNAME) $(BON)
 	@rm -rf b_checker libmlx.dylib
 	@echo "\033[0;31mRemoving          binaries\033[0;0m"
 

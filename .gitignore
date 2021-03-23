@@ -1,2 +1,7 @@
 .DS_Store
 .vscode
+*.o
+checker
+push_swap
+*.a
+b_checker

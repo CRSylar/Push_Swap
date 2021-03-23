@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 15:41:24 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/23 13:32:59 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 15:13:26 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef struct	s_all
 	unsigned char	key;
 }				t_all;
 
-
+int		check_input(char **av, t_stack **a);
+int		close_win(t_win *win);
+int		check(t_all *all);
+int		find_max(t_stack *stack);
+int		ft_stack_size(t_stack *stack);
+int		read_inst(t_all *all);
+void	my_mlx_pixel_put(t_all *all, int x, int y, int color);
 
 #endif

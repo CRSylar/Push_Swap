@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:35:58 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/21 15:00:19 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 15:17:02 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		rra(t_stack **a, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRA -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, A have 1 element\n", 1) : 0;
-		return (0) ;
+		return (0);
 	}
 	tmp = *a;
 	while (tmp->next->next)
@@ -46,7 +46,7 @@ int		rrb(t_stack **b, char flag)
 		(flag & DEBUG) ? ft_putendl_fd("\t-*- RRB -*-\n\t[A]\t[B]", 1) : 0;
 		(flag & DEBUG) ?
 		ft_putendl_fd("NO Operation done, B have 1 element\n", 1) : 0;
-		return (0) ;
+		return (0);
 	}
 	tmp = *b;
 	while (tmp->next->next)

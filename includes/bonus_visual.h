@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 15:41:24 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/23 16:11:07 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/23 16:44:28 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define MAX(x,y) ((x > y) ? x : y)
 # define ABS(x) ((x > 0) ? x : -x)
 
+# define START	0b00000010
+# define PAUSE	0b00000100
 typedef struct		s_win
 {
 	void			*img;
@@ -56,5 +58,8 @@ int					read_inst(t_all *all);
 void				print_loop(t_all *all, int max);
 void				my_mlx_pixel_put(t_all *all, int x, int y, int color);
 void				rend_stack(t_stack *stack, t_all *all, int max, char type);
+
+int					key_pressed(int key, t_all *all);
+int					key_released(int key, t_all *all);
 
 #endif

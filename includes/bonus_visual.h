@@ -6,7 +6,7 @@
 /*   By: cromalde <cromalde@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 15:41:24 by cromalde          #+#    #+#             */
-/*   Updated: 2021/03/23 16:44:28 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/03/24 09:51:09 by cromalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define START	0b00000010
 # define PAUSE	0b00000100
+
 typedef struct		s_win
 {
 	void			*img;

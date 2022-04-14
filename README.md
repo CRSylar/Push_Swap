@@ -1,6 +1,6 @@
 # Push_Swap 42 Rome
 
-![Cromalde's 42Project Score](https://badge42.herokuapp.com/api/project/cromalde/push_swap)
+[![cromalde's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl1z1axw3001109mox1m22pjp/project/2127721)](https://github.com/JaeSeoKim/badge42)
 
 
 Project based on the learning of sorting algorithms and on the notion of complexity.
